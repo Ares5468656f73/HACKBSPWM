@@ -1,0 +1,64 @@
+##########################
+# wm independent hotkeys #
+##########################
+
+# terminal emulator
+super + Return
+	/usr/bin/kitty
+
+# program launcher
+super + d
+	rofi -show drun -theme ~/.config/rofi/themes/rounded-nord-dark.rasi
+
+#################
+# bspwm hotkeys #
+#################
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+##############
+# focus/swap #
+##############
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#############
+# preselect #
+#############
+
+# preselect the direction
+super + ctrl + alt + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection
+super + ctrl + space
+	bspc node -p cancel
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+###############
+# move/resize #
+###############
+
+# move a floating window
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Custom move/resize
+super + alt + {Left,Down,Up,Right}
+	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}

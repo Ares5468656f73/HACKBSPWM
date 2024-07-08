@@ -1,0 +1,54 @@
+#!/usr/bin/bash
+
+# Start sxhkd if not already running
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Define primary and secondary monitors
+primary_monitor=$(xrandr --listmonitors | awk 'NR==2 {print $4}')
+secondary_monitor=$(xrandr --listmonitors | awk 'NR==3 {print $4}')
+
+# Set primary monitor and resolution
+xrandr --output "$primary_monitor" --primary
+xrandr --output "$primary_monitor" --mode 1920x1080 # <- your resolution
+
+# Configure bspwm monitors and desktops
+
+if [ -z "$primary_monitor" ] && [ -z "$secondary_monitor" ]; then
+  # Si no hay monitores definidos, configuramos todos los escritorios en el monitor por defecto
+  bspc monitor -d " Term" " Web" " Code" " Sec" " Server" " Files" " Edit" " Debug" " Home"
+else
+  if [ -z "$secondary_monitor" ]; then
+    # Si solo hay un monitor definido, configuramos todos los escritorios en ese monitor
+    bspc monitor "$primary_monitor" -d " Term" " Web" " Code" " Sec" " Server" " Files" " Edit" " Debug" " Home"
+  else
+    # Si hay dos monitores definidos, dividimos los escritorios entre los dos monitores
+    bspc monitor "$primary_monitor" -d " Term" " Web" " Code" " Sec"  
+    bspc monitor "$secondary_monitor" -d  " Server" " Files" " Edit" " Debug" " Home"
+  fi
+fi
+
+# Configure bspwm settings
+bspc config border_width         2
+bspc config window_gap           7
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# Define window rules
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# Launch polybar
+~/.config/polybar/launch.sh &>/dev/null
+
+# Set wallpaper
+feh --bg-fill ~/Wallpapers/pixel2-wallpaper.jpg
+
+# Set bspwm border colors
+bspc config normal_border_color "#e0af68"
+
+# Set default cursor
+xsetroot -cursor_name left_ptr & 
