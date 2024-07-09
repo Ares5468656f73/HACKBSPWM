@@ -45,10 +45,10 @@ bspc rule -a Screenkey manage=off
 ~/.config/polybar/launch.sh &>/dev/null
 
 # Set wallpaper
-feh --bg-fill ~/Wallpapers/pixel2-wallpaper.jpg
+feh --bg-fill ~/Wallpapers/Main_wallpaper.jpg
 
 # Set bspwm border colors
-bspc config normal_border_color "#e0af68"
+bspc config normal_border_color "#22a6f2"
 
 # Set default cursor
 xsetroot -cursor_name left_ptr & 
