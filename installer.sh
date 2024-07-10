@@ -29,31 +29,43 @@ install_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh
+      apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      systemctl enable vnstat
+      systemctl start vnstat
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      sudo systemctl enable vnstat
+      sudo systemctl start vnstat
     fi
   elif [ "$getDistro" == "arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+      pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      systemctl enable vnstat
+      systemctl start vnstat
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      sudo systemctl enable vnstat
+      sudo systemctl start vnstat
     fi    
   elif [ "$getOS" = "Parrot" ]; then
     if [ "$user" == "root" ]; then
       parrot-upgrade
       sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh
+      apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      systemctl enable vnstat
+      systemctl start vnstat
     elif [ "$user" != "root" ]; then
       sudo parrot-upgrade
       sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
+      systemctl enable vnstat
+      systemctl start vnstat
     fi
   fi
 
@@ -74,6 +86,8 @@ install_enviroment(){
   chmod +x *
   cd
   cd ~/.config/polybar
+  chmod +x *
+  cd scripts/
   chmod +x *
   cd 
   cd ~/.config/kitty
@@ -118,6 +132,9 @@ install_enviroment(){
   cp .zshrc ~/backups
   rm .zshrc
   cp $dotfiles_path/.zshrc .
+  cd 
+  cd $dotfiles_path
+  ./changeTheme.sh -m 
 }
 
 remove_enviroment(){  
@@ -126,31 +143,31 @@ remove_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
     fi
   elif [ "$getDistro" == "arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat
     fi    
   elif [ "$getOS" = "Parrot" ]; then
     if [ "$user" == "root" ]; then
       parrot-upgrade
       sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
     elif [ "$user" != "root" ]; then
       sudo parrot-upgrade
       sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
     fi
   fi
 

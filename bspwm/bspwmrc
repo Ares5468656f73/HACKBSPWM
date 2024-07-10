@@ -12,18 +12,14 @@ xrandr --output "$primary_monitor" --primary
 xrandr --output "$primary_monitor" --mode 1920x1080 # <- your resolution
 
 # Configure bspwm monitors and desktops
-
 if [ -z "$primary_monitor" ] && [ -z "$secondary_monitor" ]; then
-  # Si no hay monitores definidos, configuramos todos los escritorios en el monitor por defecto
-  bspc monitor -d " Term" " Web" " Code" " Sec" " Server" " Files" " Edit" " Debug" " Home"
+  bspc monitor -d " " " " " " " " " " " " " " " " " "
 else
   if [ -z "$secondary_monitor" ]; then
-    # Si solo hay un monitor definido, configuramos todos los escritorios en ese monitor
-    bspc monitor "$primary_monitor" -d " Term" " Web" " Code" " Sec" " Server" " Files" " Edit" " Debug" " Home"
+    bspc monitor "$primary_monitor" -d " " " " " " " " " " " " " " " " " "
   else
-    # Si hay dos monitores definidos, dividimos los escritorios entre los dos monitores
-    bspc monitor "$primary_monitor" -d " Term" " Web" " Code" " Sec"  
-    bspc monitor "$secondary_monitor" -d  " Server" " Files" " Edit" " Debug" " Home"
+    bspc monitor "$primary_monitor" -d " " " " " " " "  
+    bspc monitor "$secondary_monitor" -d  " " " " " " " " " "
   fi
 fi
 
@@ -43,12 +39,6 @@ bspc rule -a Screenkey manage=off
 
 # Launch polybar
 ~/.config/polybar/launch.sh &>/dev/null
-
-# Set wallpaper
-feh --bg-fill ~/Wallpapers/Main_wallpaper.jpg
-
-# Set bspwm border colors
-bspc config normal_border_color "#22a6f2"
 
 # Set default cursor
 xsetroot -cursor_name left_ptr & 
