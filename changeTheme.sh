@@ -186,6 +186,7 @@ changeToDracula ()
   " > ~/.config/kitty/color.ini
   
   bspc wm -r
+  sleep 1
   feh --bg-fill ~/Wallpapers/Dracula_Ship.png
 }
 
@@ -256,8 +257,9 @@ changeToDark ()
   selection_background #28344a
   " > ~/.config/kitty/color.ini
 
-  bspc wm -r 
-  feh --beg-fill ~/Wallpapers/Dark_theme.png
+  bspc wm -r
+  sleep 1
+  feh --bg-fill ~/Wallpapers/Dark_theme.png
 }
 
 changeToCatppuccin ()
@@ -330,6 +332,7 @@ changeToCatppuccin ()
   " > ~/.config/kitty/color.ini 
 
   bspc wm -r 
+  sleep 1
   feh --bg-fill ~/Wallpapers/PinkFloyd_catppuccin.jpg
 }
 

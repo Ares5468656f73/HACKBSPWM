@@ -11,27 +11,50 @@ turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 
 help_panel(){
-  echo -e "\n\t${yellowColour}-h)${endColour} ${grayColour}Show this panel${endColour}"
-  echo -e "\t${yellowColour}-i)${endColour} ${grayColour}Install the environment${endColour}"
-  echo -e "\t${yellowColour}-r)${endColour} ${grayColour}Remove the environment${endColour}\n"
+  echo -e "\t\t${greenColour}-i)${endColour} ${grayColour}Install the environment${endColour}"
+  echo -e "\t\t${redColour}-r)${endColour} ${grayColour}Remove the environment${endColour}\n"
 }
 
 user=$(whoami)
 
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 
+getOS=$(lsb_release -a | head -n 1 | awk '{print $3}')
+getDistro=$(cat /etc/os-release | grep ID_LIKE | cut -d '=' -f 2)
+
 install_enviroment(){
   cd 
   mkdir backups
-
-  if [ "$user" == "root" ]; then
-    apt update && apt upgrade
-    sleep 0.1
-    apt install bspwm sxhkd kitty polybar kitty rofi feh
-  elif [ "$user" != "root" ]; then
-    sudo apt update && sudo apt upgrade
-    sleep 0.1
-    sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+  if [ "$getDistro" = "debian" ]; then   
+    if [ "$user" == "root" ]; then
+      apt update && apt upgrade
+      sleep 0.1
+      apt install bspwm sxhkd kitty polybar kitty rofi feh
+    elif [ "$user" != "root" ]; then
+      sudo apt update && sudo apt upgrade
+      sleep 0.1
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+    fi
+  elif [ "$getDistro" == "arch" ]; then
+    if [ "$user" == "root" ]; then
+      pacman -Syu
+      sleep 0.1
+      pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+    elif [ "$user" != "root" ]; then
+      sudo pacman -Syu
+      sleep 0.1
+      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+    fi    
+  elif [ "$getOS" = "Parrot" ]; then
+    if [ "$user" == "root" ]; then
+      parrot-upgrade
+      sleep 0.1
+      apt install bspwm sxhkd kitty polybar kitty rofi feh
+    elif [ "$user" != "root" ]; then
+      sudo parrot-upgrade
+      sleep 0.1
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+    fi
   fi
 
   cp -r $dotfiles_path/bspwm ~/.config 
@@ -39,8 +62,6 @@ install_enviroment(){
   cp -r $dotfiles_path/polybar ~/.config
   cp -r $dotfiles_path/kitty ~/.config
   cp -r $dotfiles_path/rofi ~/.config
-  cp $dotfiles_path/.p10k.zsh /home/$user
-  cp -r $dotfiles_path/powerlevel10k /home/$user
   cp -r $dotfiles_path/Wallpapers /home/$user 
 
   cd
@@ -60,6 +81,14 @@ install_enviroment(){
   cd 
   cd ~/.config/rofi/themes 
   chmod +x *
+  cd
+  
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+  rm .p10k.zsh
+  cd
+  cp $dotfiles_path/.p10k.zsh /home/$user
 
   if [ "$user" == "root" ]; then
     cp -r $dotfiles_path/fonts /usr/share/fonts/
@@ -68,13 +97,21 @@ install_enviroment(){
   fi
 
   cd $dotfiles_path
-
-  if [ "$user" == "root" ]; then
-    dpkg -i bat_0.24.0_amd64.deb
-    dpkg -i lsd_1.1.2_amd64.deb
-  elif [ "$user" != "root" ]; then
-    sudo dpkg -i bat_0.24.0_amd64.deb
-    sudo dpkg -i lsd_1.1.2_amd64.deb
+  
+  if [ "$getDistro" == "debian" ]; then   
+    if [ "$user" == "root" ]; then
+      dpkg -i bat_0.24.0_amd64.deb
+      dpkg -i lsd_1.1.2_amd64.deb
+    elif [ "$user" != "root" ]; then
+      sudo dpkg -i bat_0.24.0_amd64.deb
+      sudo dpkg -i lsd_1.1.2_amd64.deb
+    fi
+  elif [ "$getDistro" == "arch" ]; then
+    if [ "$user" == "root" ]; then
+      pacman -S bat lsd
+    elif [ "$user" != "root" ]; then
+      sudo pacman -S bat lsd
+    fi
   fi
 
   cd 
@@ -84,14 +121,37 @@ install_enviroment(){
 }
 
 remove_enviroment(){  
-  if [ "$user" == "root" ]; then
-    apt update && apt upgrade
-    sleep 0.1
-    apt remove bspwm sxhkd kitty polybar kitty rofi feh
-  elif [ "$user" != "root" ]; then
-    sudo apt update && sudo apt upgrade
-    sleep 0.1
-    sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+  
+  if [ "$getDistro" == "debian" ]; then   
+    if [ "$user" == "root" ]; then
+      apt update && apt upgrade
+      sleep 0.1
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh
+    elif [ "$user" != "root" ]; then
+      sudo apt update && sudo apt upgrade
+      sleep 0.1
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+    fi
+  elif [ "$getDistro" == "arch" ]; then
+    if [ "$user" == "root" ]; then
+      pacman -Syu
+      sleep 0.1
+      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+    elif [ "$user" != "root" ]; then
+      sudo pacman -Syu
+      sleep 0.1
+      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+    fi    
+  elif [ "$getOS" = "Parrot" ]; then
+    if [ "$user" == "root" ]; then
+      parrot-upgrade
+      sleep 0.1
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh
+    elif [ "$user" != "root" ]; then
+      sudo parrot-upgrade
+      sleep 0.1
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+    fi
   fi
 
   rm -r ~/.config/bspwm   
@@ -106,16 +166,14 @@ remove_enviroment(){
 
   cd 
   rm .zshrc
-  cd ~/backups/.zshrc .
+  cp ~/backups/.zshrc .
   rm -r backups
 }
 
 parameter_counter=0
 
-while getopts "hir" arg; do
+while getopts "ir" arg; do
   case $arg in
-    h)
-      parameter_counter=$((parameter_counter + 1));;
     i)
       parameter_counter=$((parameter_counter + 2));;
     r)
@@ -124,29 +182,29 @@ while getopts "hir" arg; do
 done
 
 if [ $parameter_counter -eq 0 ]; then
-  echo -e "\n${greenColour} ▄▄   ▄▄ ▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄   ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄     ▄ ▄▄   ▄▄ ${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█  █ █  █      █       █   █ █ █  ▄    █       █       █ █ ▄ █ █  █▄█  █${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█  █▄█  █  ▄   █       █   █▄█ █ █▄█   █  ▄▄▄▄▄█    ▄  █ ██ ██ █       █${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█       █ █▄█  █     ▄▄█      ▄█       █ █▄▄▄▄▄█   █▄█ █       █       █${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█   ▄   █      █    █  █     █▄█  ▄   ██▄▄▄▄▄  █    ▄▄▄█       █       █${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█  █ █  █  ▄   █    █▄▄█    ▄  █ █▄█   █▄▄▄▄▄█ █   █   █   ▄   █ ██▄██ █${endColour}"
-  sleep 0.1
-  echo -e "${greenColour}█▄▄█ █▄▄█▄█ █▄▄█▄▄▄▄▄▄▄█▄▄▄█ █▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄█ █▄▄█▄█   █▄█${endColour}\n"
-  sleep 0.1
-  help_panel
-elif [ $parameter_counter -eq 1 ]; then
+  echo -e "${redColour}\n\t██╗  ██╗ █████╗  ██████╗██╗  ██╗██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗${endColour}"
+  sleep 0.025
+  echo -e "${redColour}\t██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║${endColour}"
+  sleep 0.025
+  echo -e "${redColour}\t███████║███████║██║     █████╔╝ ██████╔╝███████╗██████╔╝██║ █╗ ██║██╔████╔██║${endColour}"
+  sleep 0.025
+  echo -e "${redColour}\t██╔══██║██╔══██║██║     ██╔═██╗ ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║${endColour}"
+  sleep 0.025
+  echo -e "${redColour}\t██║  ██║██║  ██║╚██████╗██║  ██╗██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║${endColour}"
+  sleep 0.025
+  echo -e "${redColour}\t╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝${endColour}\n"
+  sleep 0.025
   help_panel
 elif [ $parameter_counter -eq 2 ]; then
-  echo -e "\n\t${redColour}Installing the environment${endColour}\n"
+  echo -e "\n\t${greenColour}Installing the environment${endColour}\n"
   sleep 1.5
   install_enviroment
+  sleep 1 
+  echo -e "${greenColour}\n\tThe environment has been installed, please reboot the machine\n${endColour}"
 elif [ $parameter_counter -eq 3 ]; then
   echo -e "\n\t${redColour}Removing the environment${endColour}\n"
   sleep 1.5
   remove_enviroment
+  sleep 1 
+  echo -e "${redColour}\n\tThe environment has been removed, please reboot the machine\n${endColour}"
 fi

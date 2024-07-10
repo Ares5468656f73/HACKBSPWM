@@ -10,19 +10,17 @@ This pentesting environment is specifically configured for Kali Linux and utiliz
 | File Viewer | bat |
 | Directory Listing | lsd |
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled.jpeg)
-
 ## Images
 
 ---
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled.png)
+![DarkTheme](~/Downloads/HACKBSPWM/Preview/DarkTheme.png)
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled%201.png)
+![MainTheme](~/Downloads/HACKBSPWM/Preview/MainTheme.png)
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled%202.png)
+![DraculaTheme](~/Downloads/HACKBSPWM/Preview/DraculaTheme.png)
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled%203.png)
+![CatppuccinTheme](~/Downloads/HACKBSPWM/Preview/CatppuccinTheme.png)
 
 ## **Installation**
 
@@ -54,7 +52,7 @@ After the script has finished, log out and log back in to apply all changes.
 
 To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](http://changeTheme.sh) script. You will see this:
 
-![Untitled](README%20df198129275a48b0811c2b275cf58638/Untitled%204.png)
+![ChangeThemePreview](~/Downloads/HACKBSPWM/Preview/ChangeThemePreview.png)
 
 The only thing yout need to do if put a parameter, for example if you want to chenge to Catppuccin theme you run:
 
