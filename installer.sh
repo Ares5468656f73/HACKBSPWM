@@ -30,7 +30,6 @@ install_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-<<<<<<< HEAD
       apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
       systemctl enable vnstat
       systemctl start vnstat
@@ -42,23 +41,11 @@ install_enviroment(){
       sudo systemctl enable vnstat
       sudo systemctl start vnstat
       chsh -s $(which zsh)
-=======
-      apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      systemctl enable vnstat
-      systemctl start vnstat
-    elif [ "$user" != "root" ]; then
-      sudo apt update && sudo apt upgrade
-      sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      sudo systemctl enable vnstat
-      sudo systemctl start vnstat
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-<<<<<<< HEAD
       pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
       systemctl enable vnstat
       systemctl start vnstat
@@ -71,32 +58,6 @@ install_enviroment(){
       sudo systemctl start vnstat
       chsh -s $(which zsh)
     fi    
-=======
-      pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      systemctl enable vnstat
-      systemctl start vnstat
-    elif [ "$user" != "root" ]; then
-      sudo pacman -Syu
-      sleep 0.1
-      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      sudo systemctl enable vnstat
-      sudo systemctl start vnstat
-    fi    
-  elif [ "$getOS" = "Parrot" ]; then
-    if [ "$user" == "root" ]; then
-      parrot-upgrade
-      sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      systemctl enable vnstat
-      systemctl start vnstat
-    elif [ "$user" != "root" ]; then
-      sudo parrot-upgrade
-      sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat
-      systemctl enable vnstat
-      systemctl start vnstat
-    fi
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
   fi
 
   cp -r $dotfiles_path/bspwm ~/.config 
@@ -117,10 +78,7 @@ install_enviroment(){
   cd
   cd ~/.config/polybar
   chmod +x *
-<<<<<<< HEAD
   rm config
-=======
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
   cd scripts/
   chmod +x *
   cd 
@@ -168,11 +126,8 @@ install_enviroment(){
   cp $dotfiles_path/.zshrc .
   cd 
   cd $dotfiles_path
-<<<<<<< HEAD
   sleep 1
   chmod +x changeTheme.sh
-=======
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
   ./changeTheme.sh -m 
 }
 
@@ -182,7 +137,6 @@ remove_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-<<<<<<< HEAD
       apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
       chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
@@ -190,19 +144,12 @@ remove_enviroment(){
       sleep 0.1
       sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
       chsh -s $(which bash)
-=======
       apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
-    elif [ "$user" != "root" ]; then
-      sudo apt update && sudo apt upgrade
-      sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-<<<<<<< HEAD
       pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat zsh
       chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
@@ -211,24 +158,6 @@ remove_enviroment(){
       sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat zsh
       chsh -s $(which bash)
     fi    
-=======
-      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat
-    elif [ "$user" != "root" ]; then
-      sudo pacman -Syu
-      sleep 0.1
-      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat
-    fi    
-  elif [ "$getOS" = "Parrot" ]; then
-    if [ "$user" == "root" ]; then
-      parrot-upgrade
-      sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
-    elif [ "$user" != "root" ]; then
-      sudo parrot-upgrade
-      sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
-    fi
->>>>>>> a5b8b14e8fb7625287faa1e7de793ac9dc926d76
   fi
 
   rm -r ~/.config/bspwm   
