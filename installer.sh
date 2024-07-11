@@ -21,40 +21,43 @@ dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 
 getOS=$(lsb_release -a | head -n 1 | awk '{print $3}')
 getDistro=$(cat /etc/os-release | grep ID_LIKE | cut -d '=' -f 2)
+getDistro_secondary=$(cat /etc/os-release | grep ID | cut -d '=' -f 2 | sed -n '2p')
 
 install_enviroment(){
   cd 
   mkdir backups
-  if [ "$getDistro" = "debian" ]; then   
+  if [ "$getDistro" = "debian" ] || [ "$getDistro" == "Debian" ] || [ "$getDistro_secondary" == "debian" ] || [ "$getDistro_secondary" == "Debian" ]; then   
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh
+      apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      systemctl enable vnstat
+      systemctl start vnstat
+      chsh -s $(which zsh)
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      sudo systemctl enable vnstat
+      sudo systemctl start vnstat
+      chsh -s $(which zsh)
     fi
-  elif [ "$getDistro" == "arch" ]; then
+  elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+      pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      systemctl enable vnstat
+      systemctl start vnstat
+      chsh -s $(which zsh)
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh
+      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      sudo systemctl enable vnstat
+      sudo systemctl start vnstat
+      chsh -s $(which zsh)
     fi    
-  elif [ "$getOS" = "Parrot" ]; then
-    if [ "$user" == "root" ]; then
-      parrot-upgrade
-      sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh
-    elif [ "$user" != "root" ]; then
-      sudo parrot-upgrade
-      sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh
-    fi
   fi
 
   cp -r $dotfiles_path/bspwm ~/.config 
@@ -74,6 +77,9 @@ install_enviroment(){
   chmod +x *
   cd
   cd ~/.config/polybar
+  chmod +x *
+  rm config
+  cd scripts/
   chmod +x *
   cd 
   cd ~/.config/kitty
@@ -98,7 +104,7 @@ install_enviroment(){
 
   cd $dotfiles_path
   
-  if [ "$getDistro" == "debian" ]; then   
+  if [ "$getDistro" == "debian" ] || [ "$getDistro" == "Debian" ] || [ "$getDistro_secondary" == "debian" ] || [ "$getDistro_secondary" == "Debian" ]; then   
     if [ "$user" == "root" ]; then
       dpkg -i bat_0.24.0_amd64.deb
       dpkg -i lsd_1.1.2_amd64.deb
@@ -106,7 +112,7 @@ install_enviroment(){
       sudo dpkg -i bat_0.24.0_amd64.deb
       sudo dpkg -i lsd_1.1.2_amd64.deb
     fi
-  elif [ "$getDistro" == "arch" ]; then
+  elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ] ; then
     if [ "$user" == "root" ]; then
       pacman -S bat lsd
     elif [ "$user" != "root" ]; then
@@ -118,40 +124,39 @@ install_enviroment(){
   cp .zshrc ~/backups
   rm .zshrc
   cp $dotfiles_path/.zshrc .
+  cd 
+  cd $dotfiles_path
+  sleep 1
+  chmod +x changeTheme.sh
+  ./changeTheme.sh -m 
 }
 
 remove_enviroment(){  
   
-  if [ "$getDistro" == "debian" ]; then   
+  if [ "$getDistro" == "debian" ] || [ "$getDistro" == "Debian" ] || [ "$getDistro_secondary" == "debian" ] || [ "$getDistro_secondary" == "Debian" ]; then   
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat zsh
+      chsh -s $(which bash)
     fi
-  elif [ "$getDistro" == "arch" ]; then
+  elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat zsh
+      chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd
+      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd vnstat zsh
+      chsh -s $(which bash)
     fi    
-  elif [ "$getOS" = "Parrot" ]; then
-    if [ "$user" == "root" ]; then
-      parrot-upgrade
-      sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh
-    elif [ "$user" != "root" ]; then
-      sudo parrot-upgrade
-      sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh
-    fi
   fi
 
   rm -r ~/.config/bspwm   

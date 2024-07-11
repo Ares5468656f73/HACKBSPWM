@@ -1,6 +1,6 @@
-# **Pentesting Environment on Kali Linux**
+# **Pentesting Environment on Linux**
 
-This pentesting environment is specifically configured for Kali Linux and utilizes the following tools and configurations:
+This pentesting environment is specifically configured for Linux and utilizes the following tools and configurations:
 
 | Window Manager | bspwm |
 | --- | --- |
@@ -14,19 +14,19 @@ This pentesting environment is specifically configured for Kali Linux and utiliz
 
 ---
 
-![DarkTheme](~/Downloads/HACKBSPWM/Preview/DarkTheme.png)
+![DarkTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DarkTheme.png)
 
-![MainTheme](~/Downloads/HACKBSPWM/Preview/MainTheme.png)
+![MainTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/MainTheme.png)
 
-![DraculaTheme](~/Downloads/HACKBSPWM/Preview/DraculaTheme.png)
+![DraculaTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DraculaTheme.png)
 
-![CatppuccinTheme](~/Downloads/HACKBSPWM/Preview/CatppuccinTheme.png)
+![CatppuccinTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/CatppuccinTheme.png)
 
 ## **Installation**
 
 ---
 
-To automatically configure the pentesting environment, use the `installer.sh` script included in this repository.
+To automatically configure the pentesting environment, use the [`installer.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/installer.sh) script included in this repository.
 
 ### **Clone the Repository**
 
@@ -50,9 +50,9 @@ After the script has finished, log out and log back in to apply all changes.
 
 ---
 
-To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](http://changeTheme.sh) script. You will see this:
+To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/changeTheme.sh) script. You will see this:
 
-![ChangeThemePreview](~/Downloads/HACKBSPWM/Preview/ChangeThemePreview.png)
+![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ChangeThemePreview.png)
 
 The only thing yout need to do if put a parameter, for example if you want to chenge to Catppuccin theme you run:
 
