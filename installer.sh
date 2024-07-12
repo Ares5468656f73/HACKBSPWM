@@ -147,6 +147,7 @@ remove_enviroment(){
       sleep 0.1
       sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
       chsh -s $(which bash)
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh vnstat
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
