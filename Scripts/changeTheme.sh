@@ -120,9 +120,9 @@ changeToDracula ()
   background-alt = #44475a
   foreground = #f8f8f2
   primary = #bd93f9
-  secondary = #f1fa8c
+  secondary = #ffb86c
   alert = #ff5555
-  disabled = #44475a
+  disabled = #6272a4   
   " > ~/.config/polybar/colors.ini
   
   echo " " > ~/.config/kitty/color.ini
@@ -198,12 +198,12 @@ changeToDark ()
 
   echo "
   [colors]
-  background = #1e222a
+  background = #252a35
   background-alt = #565c64
   foreground = #abb2bf
-  primary = #61afef
-  secondary = #e5c07b
-  alert = #e06c75
+  primary = #6cb8f9
+  secondary = #efca84
+  alert = #ea757e
   disabled = #42464e 
   " > ~/.config/polybar/colors.ini
   
@@ -223,28 +223,27 @@ changeToDark ()
   color8 #1e222a
 
   # Red
-  color1 #e06c75
-  color9 #e06c75
+  color1 #ea757e
+  color9 #ea757e
 
   # Green
-  color2  #98c379
-  color10 #98c379
+  color2  #a2cd83
+  color10 #a2cd83
 
   # Yellow
-  color3  #e5c07b
-  color11 #e5c07b
+  color3  #efca84
+  color11 #efca84
 
   # Blue
-  color4  #61afef
-  color12 #61afef
+  color4  #6cb8f9
 
   # Magenta
-  color5  #c678dd
-  color13 #c678dd
+  color5  #d282e7 
+  color13 #d282e7
 
   # Cyan
-  color6  #56b6c2
-  color14 #56b6c2
+  color6  #5fc0cc
+  color14 #5fc0cc
 
   # White
   color7  #abb2bf
@@ -270,13 +269,13 @@ changeToCatppuccin ()
 
   echo "
   [colors]
-  background = #24273a
-  background-alt = #5c5f77
-  foreground = #cad3f5
-  primary = #7dc4e4
-  secondary = #eed49f
-  alert = #ed8796
-  disabled = #6c6f85
+  background = #1e1e2e
+  background-alt = #313244
+  foreground = #cdd6f4
+  primary = #89dceb
+  secondary = #f9e2af
+  alert = #f38ba8
+  disabled = #45475a 
   " > ~/.config/polybar/colors.ini
   
   echo " " > ~/.config/kitty/color.ini 
@@ -286,41 +285,72 @@ changeToCatppuccin ()
   cursor_underline_thickness 1
   window_padding_width  20
 
-  # Special
-  foreground #5C5F77
-  background #24273A
+  # The basic colors
+  foreground              #cdd6f4
+  background              #1e1e2e
+  selection_foreground    #1e1e2e
+  selection_background    #f5e0dc
 
-  # Black
-  color0 #24273A
-  color8 #24273A
+  # Cursor colors
+  cursor                  #f5e0dc
+  cursor_text_color       #1e1e2e
 
-  # Red
-  color1 #ed8796
-  color9 #ed8796
+  # URL underline color when hovering with mouse
+  url_color               #f5e0dc
 
-  # Green
-  color2  #a6da95
-  color10 #a6da95
+  # Kitty window border colors
+  active_border_color     #b4befe
+  inactive_border_color   #6c7086
+  bell_border_color       #f9e2af
 
-  # Yellow
-  color3  #eed49f
-  color11 #eed49f
+  # Tab bar colors
+  active_tab_foreground   #11111b
+  active_tab_background   #cba6f7
+  inactive_tab_foreground #cdd6f4
+  inactive_tab_background #181825
+  tab_bar_background      #11111b
 
-  # Blue
-  color4  #7dc4e4
-  color12 #7dc4e4
+  # Colors for marks (marked text in the terminal)
+  mark1_foreground #1e1e2e
+  mark1_background #b4befe
+  mark2_foreground #1e1e2e
+  mark2_background #cba6f7
+  mark3_foreground #1e1e2e
+  mark3_background #74c7ec
 
-  # Magenta
-  color5  #c6a0f6
-  color13 #c6a0f6
+  # The 16 terminal colors
 
-  # Cyan
-  color6  #8bd5ca
-  color14 #8bd5ca
+  # black
+  color0 #45475a
+  color8 #585b70
 
-  # White
-  color7  #cad3f5
-  color15 #cad3f5
+  # red
+  color1 #f38ba8
+  color9 #f38ba8
+
+  # green
+  color2  #a6e3a1
+  color10 #a6e3a1
+
+  # yellow
+  color3  #f9e2af
+  color11 #f9e2af
+
+  # blue
+  color4  #89b4fa
+  color12 #89b4fa
+
+  # magenta
+  color5  #f5c2e7
+  color13 #f5c2e7
+
+  # cyan
+  color6  #94e2d5
+  color14 #94e2d5
+
+  # white
+  color7  #bac2de
+  color15 #a6adc8 
 
   # Cursor
   cursor #c0caf5
@@ -329,13 +359,11 @@ changeToCatppuccin ()
   # Selection highlight
   selection_foreground #7aa2f7
   selection_background #28344a
-  
-
   " > ~/.config/kitty/color.ini 
 
   bspc wm -r 
   pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/PinkFloyd_catppuccin.jpg
+  feh --bg-fill ~/Wallpapers/Magenta_cat.png
 }
 
 parameter_counter=0
