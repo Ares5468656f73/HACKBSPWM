@@ -16,9 +16,9 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ![KaliPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
 
-![ArchPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
+![ArchPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ArchUpdatedPreview.png)
 
-![ParrotPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
+![ParrotPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ParrotUpdatedPreview.png)
 
 ![DebianPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DebianUpdatedPreview.png)
 
