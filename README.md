@@ -14,13 +14,13 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ---
 
-![DarkTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DarkTheme.png)
+![KaliPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
 
-![MainTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/MainTheme.png)
+![ArchPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
 
-![DraculaTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DraculaTheme.png)
+![ParrotPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
 
-![CatppuccinTheme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/CatppuccinTheme.png)
+![DebianPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DebianUpdatedPreview.png)
 
 ## **Installation**
 
@@ -47,8 +47,9 @@ chmod +x installer.sh
 After the script has finished, log out and log back in to apply all changes.
 
 ## Change theme
-
 ---
+>[!TIP]
+>Change the color theme
 
 To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/changeTheme.sh) script. You will see this:
 
@@ -62,33 +63,32 @@ The only thing yout need to do if put a parameter, for example if you want to ch
 
 To get the changes in your kitty you need to close and open a new terminal, after you log out, reboot or shutdown the machine the theme will apply
 
-## **Tool Details**
-
----
-
-### **bspwm**
-
-bspwm is a tiling window manager that organizes windows in a binary tree format.
-
-### **sxhkd**
-
-sxhkd is a simple X hotkey daemon that maps key combinations to commands.
-
-### **kitty**
-
-kitty is a fast and feature-rich terminal emulator.
-
-### **powerlevel10k**
-
-powerlevel10k is a highly customizable zsh theme that provides useful information in the prompt.
-
-### **bat**
-
-bat is a cat clone with syntax highlighting and integrated pagination.
-
-### **lsd**
-
-lsd is a modern alternative to ls with a beautiful colorized output
+>[!IMPORTANT]
+>## **Tool Details**
+>
+>### [**bspwm**](https://github.com/baskerville/bspwm)
+>
+>bspwm is a tiling window manager that organizes windows in a binary tree format.
+>
+>### [**sxhkd**](https://github.com/baskerville/sxhkd)
+>
+>sxhkd is a simple X hotkey daemon that maps key combinations to commands.
+>
+>### [**kitty**](https://github.com/kovidgoyal/kitty.git)
+>
+>kitty is a fast and feature-rich terminal emulator.
+>
+>### [**powerlevel10k**](https://github.com/romkatv/powerlevel10k)
+>
+>powerlevel10k is a highly customizable zsh theme that provides useful information in the prompt.
+>
+>### [**bat**](https://github.com/sharkdp/bat)
+>
+>bat is a cat clone with syntax highlighting and integrated pagination.
+>
+>### [**lsd**](https://github.com/lsd-rs/lsd)
+>
+>lsd is a modern alternative to ls with a beautiful colorized output.
 
 ## **Credits**
 
