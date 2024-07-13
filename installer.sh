@@ -28,10 +28,7 @@ install_enviroment(){
   mkdir backups
   if [ "$getDistro" = "debian" ] || [ "$getDistro" == "Debian" ] || [ "$getDistro_secondary" == "debian" ] || [ "$getDistro_secondary" == "Debian" ]; then   
     if [ "$user" == "root" ]; then
-      apt update && apt upgrade
-      sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which zsh)
+      echo -e "${redColour}You cant perform this operation like root${endColour}"
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
@@ -40,10 +37,7 @@ install_enviroment(){
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
-      pacman -Syu
-      sleep 0.1
-      pacman -S bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which zsh)
+      echo -e "${redColour}You cant perform this operation like root${endColour}"
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
@@ -130,10 +124,7 @@ remove_enviroment(){
   
   if [ "$getDistro" == "debian" ] || [ "$getDistro" == "Debian" ] || [ "$getDistro_secondary" == "debian" ] || [ "$getDistro_secondary" == "Debian" ]; then   
     if [ "$user" == "root" ]; then
-      apt update && apt upgrade
-      sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which bash)
+      echo -e "${redColour}You cant perform this operation like root${endColour}"
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
@@ -142,10 +133,7 @@ remove_enviroment(){
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
-      pacman -Syu
-      sleep 0.1
-      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd nmap zsh
-      chsh -s $(which bash)
+      echo -e "${redColour}You cant perform this operation like root${endColour}"
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
