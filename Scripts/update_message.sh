@@ -19,3 +19,4 @@ MESSAGE_FILE="$HOME/.config/polybar/scripts/message.txt"
 # Add the new message
 echo "%{F$alert}󰯐 %{F-}%{F$secondary}$1%{F-}" > "$MESSAGE_FILE"
 
+

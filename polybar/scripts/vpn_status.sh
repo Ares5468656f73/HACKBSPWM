@@ -20,4 +20,3 @@ if pgrep -x "openvpn" > /dev/null; then
 else
     # VPN inactive
     echo "%{F$alert} %{F-}"
-fi

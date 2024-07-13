@@ -21,6 +21,5 @@ if [ ! -f "$MESSAGE_FILE" ]; then
     echo "%{F$secondary}󰓾 %{F-}No target" > "$MESSAGE_FILE"
 fi
 
-# Read the file and print on the polybar
-cat "$MESSAGE_FILE"
-
+# Read the file
+cat ~/.config/polybar/scripts/message.txt
