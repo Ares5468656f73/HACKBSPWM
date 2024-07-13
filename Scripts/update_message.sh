@@ -13,11 +13,9 @@ secondary=$(getColor "secondary")
 alert=$(getColor "alert")
 disabled_bash=$(getColor "disabled")
 
-# Check if VPN is running
-if pgrep -x "openvpn" > /dev/null; then
-    # VPN está activa, mostrar el ícono con el color primario
-    echo "%{F$primary} %{F-}"
-else
-    # VPN no está activa, mostrar el ícono con el color de alerta
-    echo "%{F$alert} %{F-}"
-fi
+# Message file
+MESSAGE_FILE="$HOME/.config/polybar/scripts/message.txt"
+
+# Add the new message
+echo "%{F$alert}󰯐 %{F-}%{F$secondary}$1%{F-}" > "$MESSAGE_FILE"
+
