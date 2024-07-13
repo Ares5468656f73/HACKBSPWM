@@ -13,14 +13,14 @@ secondary=$(getColor "secondary")
 alert=$(getColor "alert")
 disabled_bash=$(getColor "disabled")
 
-# Archivo donde se almacenará el mensaje
+# File were message will be loaded
 MESSAGE_FILE="$HOME/.config/polybar/scripts/message.txt"
 
-# Si el archivo no existe, crea uno con un mensaje predeterminado
+# If file doesn`t exist create one with a default message
 if [ ! -f "$MESSAGE_FILE" ]; then
     echo "%{F$secondary}󰓾 %{F-}No target" > "$MESSAGE_FILE"
 fi
 
-# Lee el mensaje del archivo y lo muestra en Polybar
+# Read the file and print on the polybar
 cat "$MESSAGE_FILE"
 

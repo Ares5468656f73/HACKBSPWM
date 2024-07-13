@@ -30,32 +30,24 @@ install_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt install bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
-      systemctl enable vnstat
-      systemctl start vnstat
+      apt install bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which zsh)
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
-      sudo systemctl enable vnstat
-      sudo systemctl start vnstat
+      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which zsh)
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -S bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
-      systemctl enable vnstat
-      systemctl start vnstat
+      pacman -S bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which zsh)
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
-      sudo systemctl enable vnstat
-      sudo systemctl start vnstat
+      sudo pacman -S bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which zsh)
     fi    
   fi
@@ -140,24 +132,24 @@ remove_enviroment(){
     if [ "$user" == "root" ]; then
       apt update && apt upgrade
       sleep 0.1
-      apt remove bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
+      apt remove bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
       sudo apt update && sudo apt upgrade
       sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh net-tools zsh
+      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
       chsh -s $(which bash)
     fi
   elif [ "$getDistro" == "arch" ] || [ "$getDistro" == "Arch" ] || [ "$getDistro_secondary" == "arch" ] || [ "$getDistro_secondary" == "Arch" ]; then
     if [ "$user" == "root" ]; then
       pacman -Syu
       sleep 0.1
-      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd net-tools zsh
+      pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd nmap zsh
       chsh -s $(which bash)
     elif [ "$user" != "root" ]; then
       sudo pacman -Syu
       sleep 0.1
-      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd net-tools zsh
+      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh bat lsd nmap zsh
       chsh -s $(which bash)
     fi    
   fi

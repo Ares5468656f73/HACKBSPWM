@@ -15,9 +15,9 @@ disabled_bash=$(getColor "disabled")
 
 # Check if VPN is running
 if pgrep -x "openvpn" > /dev/null; then
-    # VPN está activa, mostrar el ícono con el color primario
+    # VPN active
     echo "%{F$primary} %{F-}"
 else
-    # VPN no está activa, mostrar el ícono con el color de alerta
+    # VPN inactive
     echo "%{F$alert} %{F-}"
 fi
