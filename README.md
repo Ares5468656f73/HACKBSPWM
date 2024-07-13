@@ -23,9 +23,7 @@ This pentesting environment is specifically configured for Linux and utilizes th
 ![DebianPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DebianUpdatedPreview.png)
 
 ## **Installation**
-
 ---
-
 To automatically configure the pentesting environment, use the [`installer.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/installer.sh) script included in this repository.
 
 ### **Clone the Repository**
@@ -96,7 +94,9 @@ To get the changes in your kitty you need to close and open a new terminal, afte
 
 The enviroment was configured by me :)
 
-The kitty and polybar colors are from [s4vitar](https://www.youtube.com/@s4vitar), [dracula](https://draculatheme.com/), [catppuccin](https://catppuccin.com/), [nvchad](https://nvchad.com/)
+The `kitty` and `polybar` colors are from [s4vitar](https://www.youtube.com/@s4vitar), [dracula](https://draculatheme.com/), [catppuccin](https://catppuccin.com/), [nvchad](https://nvchad.com/)
+
+`Rofi` theme was for: [adi1090x](https://github.com/adi1090x/rofi/tree/master)
 
 Icons and fonts were from [HackNerdFonts](https://www.nerdfonts.com/)
 
