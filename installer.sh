@@ -86,6 +86,27 @@ install_enviroment(){
   cp $dotfiles_path/.p10k.zsh /home/$user
 
   if [ "$user" == "root" ]; then
+    cd
+    
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+    
+    rm .p10k.zsh
+    cp $dotfiles_path/.p10k.zsh_root .
+    mv .p10k.zsh_root .p10k.zsh
+  elif [ "$user" != "root" ]; then
+    sudo su
+    cd
+    
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+    
+    rm .p10k.zsh
+    cp $dotfiles_path/.p10k.zsh_root .
+    mv .p10k.zsh_root .p10k.zsh
+  fi
+
+  if [ "$user" == "root" ]; then
     cp -r $dotfiles_path/fonts /usr/share/fonts/
   elif [ "$user" != "root" ]; then
     sudo cp -r $dotfiles_path/fonts /usr/share/fonts/ 
