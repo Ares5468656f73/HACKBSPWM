@@ -87,7 +87,8 @@ install_enviroment(){
 
   if [ "$user" == "root" ]; then
     cd
-    
+    chsh -s $(which zsh)
+
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
     
@@ -97,6 +98,7 @@ install_enviroment(){
   elif [ "$user" != "root" ]; then
     sudo su
     cd
+    chsh -s $(which zsh)
     
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
