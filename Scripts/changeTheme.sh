@@ -215,39 +215,40 @@ changeToDark ()
   window_padding_width  20
 
   # Special
-  foreground #42464e
-  background #1e222a
+  foreground #abb2bf
+  background #1e2128
 
   # Black
-  color0 #1e222a
-  color8 #1e222a
+  color0 #32363d
+  color8 #50545b
 
   # Red
-  color1 #ea757e
+  color1 #e06b74
   color9 #ea757e
 
   # Green
-  color2  #a2cd83
+  color2  #98c379
   color10 #a2cd83
 
   # Yellow
-  color3  #efca84
+  color3  #e5c07a
   color11 #efca84
 
   # Blue
-  color4  #6cb8f9
+  color4  #62aeef
+  color12 #6cb8f9
 
   # Magenta
-  color5  #d282e7 
+  color5  #c778dd
   color13 #d282e7
 
   # Cyan
-  color6  #5fc0cc
+  color6  #55b6c2
   color14 #5fc0cc
 
   # White
   color7  #abb2bf
-  color15 #abb2bf
+  color15 #b5bcc9
 
   # Cursor
   cursor #c0caf5
