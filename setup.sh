@@ -20,9 +20,6 @@ user=$(whoami)
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 
 install_enviroment(){
-  cd 
-  mkdir backups
-
   ########################
   # Install the programs #
   ########################
@@ -86,12 +83,6 @@ install_enviroment(){
   ####################################################
   
   cd 
-  if [ -e ~/.zshrc ]; then
-    cp .zshrc ~/backups
-    rm .zshrc
-  else
-    :  
-  fi
 
   cp -r $dotfiles_path/bspwm ~/.config 
   cp -r $dotfiles_path/sxhkd ~/.config
@@ -126,37 +117,6 @@ install_enviroment(){
   cp -r $dotfiles_path/Scripts .
   cd ~/Scripts/
   chmod +x *
-
-  ###############################
-  # Install powerlevel10k theme #
-  ###############################
-  
-  if [ "$user" == "root" ]; then
-    exit
-    cd
-  else
-    cd
-  fi
-  
-  cp -r $dotfiles_path/powerlevel10k .
-
-  if [ -e ~/.p10k.zsh ]; then
-    rm .p10k.zsh
-  fi
-
-  cp $dotfiles_path/.p10k.zsh .
-
-  sudo su 
-  cd
-  
-  cp -r $dotfiles_path/powerlevel10k .
-  
-  if [ -e ~/.p10k.zsh ]; then
-    rm .p10k.zsh
-  fi
-
-  cp $dotfiles_path/.p10k.zsh_root .
-  mv .p10k.zsh_root .p10k.zsh
 
   ##############################
   # Install the necesary fonts #
@@ -217,29 +177,13 @@ remove_enviroment ()
   # Remove the config files in the current directories #
   ######################################################
 
-  cd
-  cp $dotfiles_path/.zshrc .
-  cd 
-
   rm -r ~/.config/bspwm/ 
   rm -r ~/.config/sxhkd/
   rm -r ~/.config/polybar/
   rm -r ~/.config/kitty/
   rm -r ~/.config/rofi/
   rm -r /home/$user/Wallpapers
-
-  ##############################
-  # Remove powerlevel10k theme #
-  ##############################
-
-  if [ "$user" != "root" ]; then
-    cd
-    sudo su 
-    rm -r powerlevel10k .p10k.zsh
-  elif [ "$user" == "root" ]; then
-    cd
-    rm -r powerlevel10k .p10k.zsh
-  fi  
+  
 }
 
 parameter_counter=0
