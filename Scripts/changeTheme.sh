@@ -201,9 +201,9 @@ changeToDark ()
   background = #252a35
   background-alt = #565c64
   foreground = #abb2bf
-  primary = #6cb8f9
+  primary = #62aeef
   secondary = #efca84
-  alert = #ea757e
+  alert = #e06b74
   disabled = #42464e 
   " > ~/.config/polybar/colors.ini
   
