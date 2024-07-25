@@ -12,31 +12,104 @@ grayColour="\e[0;37m\033[1m"
 
 helpPanel ()
 {
-  echo "\n${grayColour} ▄████▄   ██░ ██  ▄▄▄       ███▄    █   ▄████ ▓█████    ▄▄▄█████▓ ██░ ██ ▓█████  ███▄ ▄███▓▓█████ ${endColour}"
+  echo -e "\n${grayColour} ▄████▄   ██░ ██  ▄▄▄       ███▄    █   ▄████ ▓█████    ▄▄▄█████▓ ██░ ██ ▓█████  ███▄ ▄███▓▓█████ ${endColour}"
   sleep 0.02
-  echo "${grayColour}▒██▀ ▀█  ▓██░ ██▒▒████▄     ██ ▀█   █  ██▒ ▀█▒▓█   ▀    ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀ ▓██▒▀█▀ ██▒▓█   ▀ ${endColour}"
+  echo -e "${grayColour}▒██▀ ▀█  ▓██░ ██▒▒████▄     ██ ▀█   █  ██▒ ▀█▒▓█   ▀    ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀ ▓██▒▀█▀ ██▒▓█   ▀ ${endColour}"
   sleep 0.02
-  echo "${grayColour}▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒▒██░▄▄▄░▒███      ▒ ▓██░ ▒░▒██▀▀██░▒███   ▓██    ▓██░▒███   ${endColour}"
+  echo -e "${grayColour}▒▓█    ▄ ▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒▒██░▄▄▄░▒███      ▒ ▓██░ ▒░▒██▀▀██░▒███   ▓██    ▓██░▒███   ${endColour}"
   sleep 0.02
-  echo "${grayColour}▒▓▓▄ ▄██▒░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█  ██▓▒▓█  ▄    ░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄ ▒██    ▒██ ▒▓█  ▄ ${endColour}"
+  echo -e "${grayColour}▒▓▓▄ ▄██▒░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█  ██▓▒▓█  ▄    ░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄ ▒██    ▒██ ▒▓█  ▄ ${endColour}"
   sleep 0.02
-  echo "${grayColour}▒ ▓███▀ ░░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░░▒▓███▀▒░▒████▒     ▒██▒ ░ ░▓█▒░██▓░▒████▒▒██▒   ░██▒░▒████▒${endColour}"
+  echo -e "${grayColour}▒ ▓███▀ ░░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░░▒▓███▀▒░▒████▒     ▒██▒ ░ ░▓█▒░██▓░▒████▒▒██▒   ░██▒░▒████▒${endColour}"
   sleep 0.02
-  echo "${grayColour}░ ░▒ ▒  ░ ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ░▒   ▒ ░░ ▒░ ░     ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░░ ▒░   ░  ░░░ ▒░ ░${endColour}"
+  echo -e "${grayColour}░ ░▒ ▒  ░ ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ░▒   ▒ ░░ ▒░ ░     ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░░ ▒░   ░  ░░░ ▒░ ░${endColour}"
   sleep 0.02
-  echo "${grayColour}  ░  ▒    ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░  ░   ░  ░ ░  ░       ░     ▒ ░▒░ ░ ░ ░  ░░  ░      ░ ░ ░  ░${endColour}"
+  echo -e "${grayColour}  ░  ▒    ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░  ░   ░  ░ ░  ░       ░     ▒ ░▒░ ░ ░ ░  ░░  ░      ░ ░ ░  ░${endColour}"
   sleep 0.02
-  echo "${grayColour}░         ░  ░░ ░  ░   ▒      ░   ░ ░ ░ ░   ░    ░        ░       ░  ░░ ░   ░   ░      ░      ░   ${endColour}"
+  echo -e "${grayColour}░         ░  ░░ ░  ░   ▒      ░   ░ ░ ░ ░   ░    ░        ░       ░  ░░ ░   ░   ░      ░      ░   ${endColour}"
   sleep 0.02
-  echo "${grayColour}░ ░       ░  ░  ░      ░  ░         ░       ░    ░  ░             ░  ░  ░   ░  ░       ░      ░  ░${endColour}"
+  echo -e "${grayColour}░ ░       ░  ░  ░      ░  ░         ░       ░    ░  ░             ░  ░  ░   ░  ░       ░      ░  ░${endColour}"
   sleep 0.02
-  echo "${grayColour}░                                                                                                 ${endColour}\n"
+  echo -e "${grayColour}░                                                                                                 ${endColour}\n"
   sleep 0.02
-  echo "\t${grayColour}Avalible themes${endColour}"
-  echo "\t\t${blueColour}-m)${endColour} ${grayColour}Main theme (the default of this enviroment)${endColour}"
-  echo "\t\t${yellowColour}-d)${endColour} ${grayColour}Dark color inspire in NVCHAD${endColour}"
-  echo "\t\t${purpleColour}-c)${endColour} ${grayColour}Catppuccin theme${endColour}"
-  echo "\t\t${turquoiseColour}-v)${endColour} ${grayColour}Dracula theme${endColour}"
+  echo -e "\t${grayColour}Avalible themes${endColour}"
+  echo -e "\t\t${blueColour}-m)${endColour} ${grayColour}Main theme${endColour}"
+  echo -e "\t\t${yellowColour}-d)${endColour} ${grayColour}Dark color${endColour}"
+  echo -e "\t\t${purpleColour}-c)${endColour} ${grayColour}Catppuccin theme${endColour}"
+  echo -e "\t\t${turquoiseColour}-v)${endColour} ${grayColour}Dracula theme${endColour}"
+  echo -e "\t\t${grayColour}-t)${endColour} ${grayColour}Tokyo theme${endColour}"
+}
+
+changeToTokyo ()
+{
+  echo " " > ~/.config/polybar/colors.ini
+  
+  echo "
+  [colors]
+  background = #101213
+  background-alt = #1b1d1e
+  foreground = #edeff0
+  primary = #67afc1
+  secondary = #ebc97e
+  alert = #d8595f
+  disabled = #6791c9
+  " > ~/.config/polybar/colors.ini
+
+  echo " " > ~/.config/kitty/color.ini
+
+  echo "
+  cursor_shape          Underline
+  cursor_underline_thickness 1
+  window_padding_width  20
+
+  # Special
+  foreground #abb2bf
+  background #101213
+
+  # Black
+  color0 #232526
+  color8 #2c2e2f
+
+  # Red
+  color1 #df5b61
+  color9 #e8646a
+
+  # Green
+  color2  #78b892
+  color10 #81c19b
+
+  # Yellow
+  color3  #de8f78
+  color11 #e79881
+
+  # Blue
+  color4  #6791c9
+  color12 #709ad2
+
+  # Magenta
+  color5  #bc83e3
+  color13 #c58cec
+
+  # Cyan
+  color6  #67afc1
+  color14 #70b8ca
+
+  # White
+  color7  #e4e6e7
+  color15 #f2f4f5
+
+  # Cursor
+  cursor #c0caf5
+  cursor_text_color #1a1b26
+
+  # Selection highlight
+  selection_foreground #7aa2f7
+  selection_background #28344a
+  " > ~/.config/kitty/color.ini
+
+  bspc wm -r
+  pkill -USR1 -f kitty
+  feh --bg-fill ~/Wallpapers/Tokyo_night.png
 }
 
 changeToMain ()
@@ -198,11 +271,11 @@ changeToDark ()
 
   echo "
   [colors]
-  background = #252a35
+  background = #1e2128
   background-alt = #565c64
   foreground = #abb2bf
   primary = #62aeef
-  secondary = #efca84
+  secondary = #e5c07a
   alert = #e06b74
   disabled = #42464e 
   " > ~/.config/polybar/colors.ini
@@ -364,12 +437,12 @@ changeToCatppuccin ()
 
   bspc wm -r 
   pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Magenta_cat.png
+  feh --bg-fill ~/Wallpapers/Cat_leaves.png
 }
 
 parameter_counter=0
 
-while getopts "mdcv" arg; do
+while getopts "mdcvt" arg; do
   case $arg in
     m)
       parameter_counter=$((parameter_counter + 1));;
@@ -379,6 +452,8 @@ while getopts "mdcv" arg; do
       parameter_counter=$((parameter_counter + 3));;
     v)
       parameter_counter=$((parameter_counter + 4));;
+    t)
+      parameter_counter=$((parameter_counter + 5));;
   esac
 done
 
@@ -392,6 +467,8 @@ elif [ $parameter_counter -eq 3 ]; then
   changeToCatppuccin
 elif [ $parameter_counter -eq 4 ]; then
   changeToDracula
+elif [ $parameter_counter -eq 5 ]; then
+  changeToTokyo
 else
   helpPanel
 fi
