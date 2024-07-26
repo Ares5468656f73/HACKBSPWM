@@ -131,32 +131,60 @@ install_enviroment(){
   ######################################
   # Install the zshrc and powerlevel10 #
   ######################################
-  if [ -f ~/.zshrc ]; then
-    rm ~/.zshrc
-    if [ -f ~/.oh-my-zsh ]; then
-      :
-    else
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      chmod +x *
+  if [ "$USER" != "root" ]; then
+    if [ -f ~/.zshrc ]; then
+      rm ~/.zshrc
     fi
-    cd
-    cp $dotfiles_path/.zshrc .
+
+    if [ ! -d ~/.oh-my-zsh ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    cp $dotfiles_path/.zshrc ~
+
   else
-    cd
-    cp $dotfiles_path/.zshrc .
-    if [ -f ~/.oh-my-zsh ]; then
-      :
-    else
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      chmod +x *
+    if [ -f ~/.zshrc ]; then
+      rm ~/.zshrc
     fi
+
+    if [ ! -d ~/.oh-my-zsh ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
+
+    cp $dotfiles_path/.zshrc ~
+
+    # Plugins for root user
+    cd ~/.oh-my-zsh/custom/plugins
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git
+    chmod +x *
   fi
-  
-  cd
+
+  # Plugins for non-root user
   cd ~/.oh-my-zsh/custom/plugins
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git
   chmod +x *
+
+  # Handling the case where script is run with sudo
+  if [ "$USER" != "root" ]; then
+    sudo su -c "
+      if [ -f ~/.zshrc ]; then
+        rm ~/.zshrc
+      fi
+
+      if [ ! -d ~/.oh-my-zsh ]; then
+        sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
+      fi
+
+      cp $dotfiles_path/.zshrc ~
+
+      cd ~/.oh-my-zsh/custom/plugins
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+      git clone https://github.com/zsh-users/zsh-autosuggestions.git
+      chmod +x *
+    "
+  fi 
 }
 
 remove_enviroment ()
