@@ -6,26 +6,19 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ***Window Manager ≡ [bspwm](https://github.com/baskerville/bspwm)*** 
 
-##### *Other programs/utilities used on the enviroment*
-| Keybinding Manager| sxhkd|
-| Terminal| kitty|
-| Terminal theme| powerlevel10k|
-| File Viewer| bat|
-| Directory Listing| lsd|
-
 ## Images
 
 ---
 
-![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/MainTheme.png)
+![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/MainTheme.png)
 
-![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/CatppuccinTheme.png)
+![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/CatppuccinTheme.png)
 
-![Preview-3](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/DraculaTheme.png)
+![Preview-3](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DraculaTheme.png)
 
-![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/DarkTheme.png)
+![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DarkTheme.png)
 
-![Preview-5](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/TokyoTheme)
+![Preview-5](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/TokyoTheme)
 
 ## **Installation**
 ---
@@ -47,8 +40,8 @@ chmod +x setup.sh
 ./installer.sh
 ```
 ##### *You will see this*
-![FirstPart](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/SetupPreview-1.png)
-![SecondPart](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/SetupPreview-2.png)
+![FirstPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/SetupPreview-1.png)
+![SecondPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/SetupPreview-2.png)
 
 After the script has finished, log out and log back in to apply all changes.
 
@@ -59,19 +52,22 @@ After the script has finished, log out and log back in to apply all changes.
 
 To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Scripts/changeTheme.sh) script. You will see this:
 
-![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/ChangeThemePreview.png)
+![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ChangeThemePreview.png)
 
 There are ***5*** available themes, thanks to 
 
-|[S4vitar](https://www.youtube.com/@s4vitar)| For main theme color and also for introduce me in cybersecurity world. Thanks S4vi por que se tensó|
-|[Catppuccin](https://catppuccin.com/)| Obviously for the catppuccin theme|
-|[Dracula](https://draculatheme.com/)| Obviously for the dracula theme|
-|[Dark](https://archcraft.io/)| I took the colors of this distro which i used to use|
-|[Tokyo](https://github.com/rxyhn/yoru)| This mf inspired me to create my own enviroment|
+| Name | Description |
+|--------|-------------|
+| [S4vitar](https://www.youtube.com/@s4vitar) | For main theme color and also for introduce me in cybersecurity world. Thanks S4vi por que se tensó |
+| [Catppuccin](https://catppuccin.com/) | Obviously for the catppuccin theme |
+| [Dracula](https://draculatheme.com/) | Obviously for the dracula theme |
+| [Dark](https://archcraft.io/) | I took the colors of this distro which i used to use |
+| [Tokyo](https://github.com/rxyhn/yoru) | This mf inspired me to create my own environment |
+
 
 ## Rofi
 ---
-![Rofi theme](https://github.com/Ares5468656f73/HACKBSPWM/tree/main/Preview/RofiPreview.png)
+![Rofi theme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/RofiPreview.png)
 
 The original `rofi` theme was from [adi1090x](https://github.com/adi1090x/rofi/tree/master)
 
