@@ -1,306 +1,175 @@
 #!/usr/bin/bash
 
-#Colours
-greenColour="\e[0;32m\033[1m"
-endColour="\033[0m\e[0m"
-redColour="\e[0;31m\033[1m"
-blueColour="\e[0;34m\033[1m"
-yellowColour="\e[0;33m\033[1m"
-purpleColour="\e[0;35m\033[1m"
-turquoiseColour="\e[0;36m\033[1m"
-grayColour="\e[0;37m\033[1m"
+# Colors
+COLORS=(
+  "green=\e[0;32m\033[1m"
+  "end=\033[0m\e[0m"
+  "red=\e[0;31m\033[1m"
+  "blue=\e[0;34m\033[1m"
+  "yellow=\e[0;33m\033[1m"
+  "purple=\e[0;35m\033[1m"
+  "turquoise=\e[0;36m\033[1m"
+  "gray=\e[0;37m\033[1m"
+)
 
-help_panel(){
-  echo -e "\t\t${greenColour}-i)${endColour} ${grayColour}Install the environment${endColour}"
-  echo -e "\t\t${redColour}-r)${endColour} ${grayColour}Remove the environment${endColour}\n"
+for color in "${COLORS[@]}"; do
+  eval $color
+done
+
+help_panel() {
+  echo -e "\t\t${green}-i)${end} ${gray}Install the environment${end}"
+  echo -e "\t\t${red}-r)${end} ${gray}Remove the environment${end}\n"
 }
 
 user=$(whoami)
-
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 
-install_enviroment(){
-  ########################
-  # Install the programs #
-  ########################
+if [ -z "$dotfiles_path" ]; then
+  echo -e "${red}Error: HACKBSPWM directory not found.${end}"
+  exit 1
+fi
 
-  echo -e "\n${grayColour}▄████▄   ██░ ██  ▒█████   ▒█████    ██████ ▓█████      ██████▓██   ██▓  ██████ ▄▄▄█████▓▓█████  ███▄ ▄███▓
-▒██▀ ▀█  ▓██░ ██▒▒██▒  ██▒▒██▒  ██▒▒██    ▒ ▓█   ▀    ▒██    ▒ ▒██  ██▒▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▓██▒▀█▀ ██▒
-▒▓█    ▄ ▒██▀▀██░▒██░  ██▒▒██░  ██▒░ ▓██▄   ▒███      ░ ▓██▄    ▒██ ██░░ ▓██▄   ▒ ▓██░ ▒░▒███   ▓██    ▓██░
-▒▓▓▄ ▄██▒░▓█ ░██ ▒██   ██░▒██   ██░  ▒   ██▒▒▓█  ▄      ▒   ██▒ ░ ▐██▓░  ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ▒██    ▒██ 
-▒ ▓███▀ ░░▓█▒░██▓░ ████▓▒░░ ████▓▒░▒██████▒▒░▒████▒   ▒██████▒▒ ░ ██▒▓░▒██████▒▒  ▒██▒ ░ ░▒████▒▒██▒   ░██▒
-░ ░▒ ▒  ░ ▒ ░░▒░▒░ ▒░▒░▒░ ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░░ ▒░ ░   ▒ ▒▓▒ ▒ ░  ██▒▒▒ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░░ ▒░   ░  ░
-░  ▒    ▒ ░▒░ ░  ░ ▒ ▒░   ░ ▒ ▒░ ░ ░▒  ░ ░ ░ ░  ░   ░ ░▒  ░ ░▓██ ░▒░ ░ ░▒  ░ ░    ░     ░ ░  ░░  ░      ░
-░         ░  ░░ ░░ ░ ░ ▒  ░ ░ ░ ▒  ░  ░  ░     ░      ░  ░  ░  ▒ ▒ ░░  ░  ░  ░    ░         ░   ░      ░   
-░ ░       ░  ░  ░    ░ ░      ░ ░        ░     ░  ░         ░  ░ ░           ░              ░  ░       ░   
-░                                                              ░ ░                                         ${endColour}"  
-  echo -e "\t${redColour}Debian -> 1${endColour}"
-  sleep 0.02
-  echo -e "\t${blueColour}Arch -> 2${endColour}"
-  sleep 0.02
-  echo -e "\t${turquoiseColour}Fedora -> 3${endColour}"
-  read OS
+install_environment() {
+  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
+  local extra_packages="lsd bat"
+  local os=$1
+  local update_cmd install_cmd
   
-  if [ "$OS" == "1" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo apt update && sudo apt upgrade
-      sleep 0.1
-      sudo apt install bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which zsh)
-      cd $dotfiles_path
-      sudo dpkg -i bat_0.24.0_amd64.deb
-      sudo dpkg -i lsd_1.1.2_amd64.deb        
-    fi
-  elif [ "$OS" == "2" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo pacman -Syu
-      sleep 0.1
-      sudo pacman -Syu bspwm sxhkd kitty polybar kitty rofi feh nmap zsh lsd bat
-      chsh -s $(which zsh)
-    fi
-  elif [ "$OS" == "3" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo dnf update && sudo dnf upgrade
-      sleep 0.1
-      sudo dnf install bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which zsh)
-    fi
-  else
-      echo -e "${yellowColour}Invalid option${endColour}"  
-      cd 
-      rm -r backups
-      kill -SIGINT $$   
-  fi
-
-  ####################################################
-  # Copy the config files in the current directories #
-  ####################################################
-  
-  cd 
-
-  cp -r $dotfiles_path/bspwm ~/.config 
-  cp -r $dotfiles_path/sxhkd ~/.config
-  cp -r $dotfiles_path/polybar ~/.config
-  cp -r $dotfiles_path/kitty ~/.config
-  cp -r $dotfiles_path/rofi ~/.config
-  cp -r $dotfiles_path/Wallpapers /home/$user 
-
-  cd
-  cd ~/.config/bspwm
-  chmod +x *
-  cd ~/.config/bspwm/scripts 
-  chmod +x *
-  cd 
-  cd ~/.config/sxhkd
-  chmod +x *
-  cd
-  cd ~/.config/polybar
-  chmod +x *
-  if [ -e ~/.config/polybar/config ]; then
-    rm config   
-  fi
-  cd scripts/
-  chmod +x *
-  cd 
-  cd ~/.config/kitty
-  chmod +x *
-  cd 
-  cd ~/.config/rofi/themes 
-  chmod +x *
-  cd
-  cp -r $dotfiles_path/Scripts .
-  cd ~/Scripts/
-  chmod +x *
-
-  ##############################
-  # Install the necesary fonts #
-  ##############################
+  case $os in
+    1)
+      update_cmd="sudo apt update && sudo apt upgrade -y"
+      install_cmd="sudo apt install -y $packages"
+      ;;
+    2)
+      update_cmd="sudo pacman -Syu"
+      install_cmd="sudo pacman -S --noconfirm $packages $extra_packages"
+      ;;
+    3)
+      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
+      install_cmd="sudo dnf install -y $packages"
+      ;;
+    *)
+      echo -e "${yellow}Invalid option${end}"
+      exit 1
+      ;;
+  esac
 
   if [ "$user" == "root" ]; then
-    cp -r $dotfiles_path/fonts /usr/share/fonts/
-  elif [ "$user" != "root" ]; then
-    sudo cp -r $dotfiles_path/fonts /usr/share/fonts/ 
+    echo -e "${red}You can't perform this operation as root.${end}"
+    exit 1
   fi
 
-  ######################################
-  # Install the zshrc and powerlevel10 #
-  ######################################
-  if [ "$USER" != "root" ]; then
-    if [ -f ~/.zshrc ]; then
-      rm ~/.zshrc
-    fi
+  eval $update_cmd
+  eval $install_cmd
 
-    if [ ! -d ~/.oh-my-zsh ]; then
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
+  chsh -s $(which zsh)
 
-    cp $dotfiles_path/.zshrc ~
-
-  else
-    if [ -f ~/.zshrc ]; then
-      rm ~/.zshrc
-    fi
-
-    if [ ! -d ~/.oh-my-zsh ]; then
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
-    cp $dotfiles_path/.zshrc ~
-
-    # Plugins for root user
-    cd ~/.oh-my-zsh/custom/plugins
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git
-    chmod +x *
+  if [[ $os == 1 ]]; then
+    cd $dotfiles_path
+    sudo dpkg -i bat_0.24.0_amd64.deb lsd_1.1.2_amd64.deb
   fi
 
-  # Plugins for non-root user
-  cd ~/.oh-my-zsh/custom/plugins
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git
-  chmod +x *
-
-  # Handling the case where script is run with sudo
-  if [ "$USER" != "root" ]; then
-    sudo su -c "
-      if [ -f ~/.zshrc ]; then
-        rm ~/.zshrc
-      fi
-
-      if [ ! -d ~/.oh-my-zsh ]; then
-        sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
-      fi
-
-      cp $dotfiles_path/.zshrc ~
-
-      cd ~/.oh-my-zsh/custom/plugins
-      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-      git clone https://github.com/zsh-users/zsh-autosuggestions.git
-      chmod +x *
-    "
-  fi
-
-  # Install powerlevels10k 
-  if [ "$USER" == "root" ]
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-    exit
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-  else # if user != root
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-    sudo su
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-  fi
+  copy_config_files
+  install_fonts
+  setup_zsh
 }
 
-remove_enviroment ()
-{
-  echo -e "${greenColour}Choose system${endColour}"
-  echo -e "\t${redColour}Debian -> 1${endColour}"
-  sleep 0.02
-  echo -e "\t${blueColour}Arch -> 2${endColour}"
-  sleep 0.02
-  echo -e "\t${turquoiseColour}Fedora -> 3${endColour}"
-  read OS
-  if [ "$OS" == "1" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo apt update && sudo apt upgrade
-      sleep 0.1
-      sudo apt remove bspwm sxhkd kitty polybar kitty rofi feh nmap zsh
-      chsh -s $(which zsh)
-      cd $dotfiles_path
-      sudo dpkg -r bat_0.24.0_amd64.deb
-      sudo dpkg -r lsd_1.1.2_amd64.deb        
-    fi
-  elif [ "$OS" == "2" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo pacman -Syu
-      sleep 0.1
-      sudo pacman -R bspwm sxhkd kitty polybar kitty rofi feh nmap zsh lsd bat
-      chsh -s $(which zsh)
-    fi
-  elif [ "$OS" == "3" ]; then
-    if [ "$user" == "root" ]; then
-      echo -e "${redColour}You cant perform this operation like root"
-    else
-      sudo dnf update && sudo dnf upgrade
-      sleep 0.1
-      sudo dnf remove bspwm sxhkd kitty polybar kitty rofi feh nmap zsh 
-      chsh -s $(which zsh)
-    fi
-  else
-    echo -e "${yellowColour}Invalid option${endColour}"  
-    kill -SIGINT $$   
-  fi
+remove_environment() {
+  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
+  local os=$1
+  local update_cmd remove_cmd
   
-  ######################################################
-  # Remove the config files in the current directories #
-  ######################################################
+  case $os in
+    1)
+      update_cmd="sudo apt update && sudo apt upgrade -y"
+      remove_cmd="sudo apt remove --purge -y $packages"
+      ;;
+    2)
+      update_cmd="sudo pacman -Syu"
+      remove_cmd="sudo pacman -R --noconfirm $packages"
+      ;;
+    3)
+      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
+      remove_cmd="sudo dnf remove -y $packages"
+      ;;
+    *)
+      echo -e "${yellow}Invalid option${end}"
+      exit 1
+      ;;
+  esac
 
-  rm -r ~/.config/bspwm/ 
-  rm -r ~/.config/sxhkd/
-  rm -r ~/.config/polybar/
-  rm -r ~/.config/kitty/
-  rm -r ~/.config/rofi/
-  rm -r /home/$user/Wallpapers
+  if [ "$user" == "root" ]; then
+    echo -e "${red}You can't perform this operation as root.${end}"
+    exit 1
+  fi
+
+  eval $update_cmd
+  eval $remove_cmd
+
+  remove_config_files
 }
 
-parameter_counter=0
+copy_config_files() {
+  local config_dirs=("bspwm" "sxhkd" "polybar" "kitty" "rofi")
+  local src_dir=$dotfiles_path
+
+  for dir in "${config_dirs[@]}"; do
+    cp -r $src_dir/$dir ~/.config
+  done
+
+  cp -r $src_dir/Wallpapers /home/$user
+  chmod +x ~/.config/{bspwm,bspwm/scripts,sxhkd,polybar,polybar/scripts,kitty,rofi/themes}/*
+  cp -r $src_dir/Scripts ~
+  chmod +x ~/Scripts/*
+}
+
+install_fonts() {
+  local fonts_dir="/usr/share/fonts"
+  sudo cp -r $dotfiles_path/fonts $fonts_dir
+}
+
+setup_zsh() {
+  local zsh_custom="$HOME/.oh-my-zsh/custom"
+  local plugins_dir="$zsh_custom/plugins"
+  
+  if [ -f ~/.zshrc ]; then
+    rm ~/.zshrc
+  fi
+
+  if [ ! -d ~/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+
+  cp $dotfiles_path/.zshrc ~
+
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
+  chmod +x $plugins_dir/*
+
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+}
 
 while getopts "ir" arg; do
   case $arg in
     i)
-      parameter_counter=$((parameter_counter + 2));;
+      echo -e "\n\t${green}Installing the environment${end}\n"
+      sleep 1.5
+      install_environment
+      echo -e "${green}\n\tThe environment has been installed, please reboot the machine\n${end}"
+      ;;
     r)
-      parameter_counter=$((parameter_counter + 3));;
+      echo -e "\n\t${red}Removing the environment${end}\n"
+      sleep 1.5
+      remove_environment
+      echo -e "${red}\n\tThe environment has been removed, please reboot the machine\n${end}"
+      ;;
+    *)
+      help_panel
+      ;;
   esac
 done
 
-if [ $parameter_counter -eq 0 ]; then
-
-  echo -e "\n${yellowColour}██░ ██  ▄▄▄       ▄████▄   ██ ▄█▀ ▄▄▄▄     ██████  ██▓███   █     █░ ███▄ ▄███▓${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}▓██░ ██▒▒████▄    ▒██▀ ▀█   ██▄█▒ ▓█████▄ ▒██    ▒ ▓██░  ██▒▓█░ █ ░█░▓██▒▀█▀ ██▒${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}▒██▀▀██░▒██  ▀█▄  ▒▓█    ▄ ▓███▄░ ▒██▒ ▄██░ ▓██▄   ▓██░ ██▓▒▒█░ █ ░█ ▓██    ▓██░${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}░▓█ ░██ ░██▄▄▄▄██ ▒▓▓▄ ▄██▒▓██ █▄ ▒██░█▀    ▒   ██▒▒██▄█▓▒ ▒░█░ █ ░█ ▒██    ▒██ ${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}░▓█▒░██▓ ▓█   ▓██▒▒ ▓███▀ ░▒██▒ █▄░▓█  ▀█▓▒██████▒▒▒██▒ ░  ░░░██▒██▓ ▒██▒   ░██▒${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}▒ ░░▒░▒ ▒▒   ▓▒█░░ ░▒ ▒  ░▒ ▒▒ ▓▒░▒▓███▀▒▒ ▒▓▒ ▒ ░▒▓▒░ ░  ░░ ▓░▒ ▒  ░ ▒░   ░  ░${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}▒ ░▒░ ░  ▒   ▒▒ ░  ░  ▒   ░ ░▒ ▒░▒░▒   ░ ░ ░▒  ░ ░░▒ ░       ▒ ░ ░  ░  ░      ░${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}░  ░░ ░  ░   ▒   ░        ░ ░░ ░  ░    ░ ░  ░  ░  ░░         ░   ░  ░      ░   ${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}░  ░  ░      ░  ░░ ░      ░  ░    ░            ░               ░           ░   ${endColour}"
-  sleep 0.1
-  echo -e "${yellowColour}                ░                     ░                                         ${endColour}\n"
+if [ $OPTIND -eq 1 ]; then
   help_panel
-elif [ $parameter_counter -eq 2 ]; then
-  echo -e "\n\t${greenColour}Installing the environment${endColour}\n"
-  sleep 1.5
-  install_enviroment
-  sleep 1 
-  echo -e "${greenColour}\n\tThe environment has been installed, please reboot the machine\n${endColour}"
-elif [ $parameter_counter -eq 3 ]; then
-  echo -e "\n\t${redColour}Removing the environment${endColour}\n"
-  sleep 1.5
-  remove_enviroment
-  sleep 1 
-  echo -e "${redColour}\n\tThe environment has been removed, please reboot the machine\n${endColour}"
 fi
