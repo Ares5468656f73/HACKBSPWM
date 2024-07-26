@@ -1,27 +1,15 @@
 #!/usr/bin/env bash
 
-# Colors
-declare -A COLORS=(
-  [green]="\e[0;32m\033[1m"
-  [end]="\033[0m\e[0m"
-  [red]="\e[0;31m\033[1m"
-  [blue]="\e[0;34m\033[1m"
-  [yellow]="\e[0;33m\033[1m"
-  [purple]="\e[0;35m\033[1m"
-  [turquoise]="\e[0;36m\033[1m"
-  [gray]="\e[0;37m\033[1m"
-)
-
 help_panel() {
-  echo -e "\t\t${COLORS[green]}-i)${COLORS[end]} ${COLORS[gray]}Install the environment${COLORS[end]}"
-  echo -e "\t\t${COLORS[red]}-r)${COLORS[end]} ${COLORS[gray]}Remove the environment${COLORS[end]}\n"
+  echo -e "\t-i) Install the environment"
+  echo -e "\t-r) Remove the environment\n"
 }
 
 user=$(whoami)
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 
 if [ -z "$dotfiles_path" ]; then
-  echo -e "${COLORS[red]}Error: HACKBSPWM directory not found.${COLORS[end]}"
+  echo "Error: HACKBSPWM directory not found."
   exit 1
 fi
 
@@ -45,13 +33,13 @@ install_environment() {
       install_cmd="sudo dnf install -y $packages"
       ;;
     *)
-      echo -e "${COLORS[yellow]}Invalid option${COLORS[end]}"
+      echo "Invalid option"
       exit 1
       ;;
   esac
 
   if [ "$user" == "root" ]; then
-    echo -e "${COLORS[red]}You can't perform this operation as root.${COLORS[end]}"
+    echo "You can't perform this operation as root."
     exit 1
   fi
 
@@ -89,13 +77,13 @@ remove_environment() {
       remove_cmd="sudo dnf remove -y $packages"
       ;;
     *)
-      echo -e "${COLORS[yellow]}Invalid option${COLORS[end]}"
+      echo "Invalid option"
       exit 1
       ;;
   esac
 
   if [ "$user" == "root" ]; then
-    echo -e "${COLORS[red]}You can't perform this operation as root.${COLORS[end]}"
+    echo "You can't perform this operation as root."
     exit 1
   fi
 
@@ -146,23 +134,45 @@ setup_zsh() {
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 }
 
+setup_root_zsh() {
+  local zsh_custom="/root/.oh-my-zsh/custom"
+  local plugins_dir="$zsh_custom/plugins"
+
+  if [ -f /root/.zshrc ]; then
+    rm /root/.zshrc
+  fi
+
+  if [ ! -d /root/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+
+  cp $dotfiles_path/.zshrc /root
+
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
+  chmod +x $plugins_dir/*
+
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k
+  echo 'source /root/powerlevel10k/powerlevel10k.zsh-theme' >>/root/.zshrc
+}
+
 while getopts "ir" arg; do
   case $arg in
     i)
-      echo -e "\n\t${COLORS[green]}Installing the environment${COLORS[end]}\n"
+      echo -e "\nInstalling the environment\n"
       sleep 1.5
-      echo -e "${COLORS[yellow]}Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora${COLORS[end]}"
+      echo -e "Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
       read -p "Enter the number corresponding to your OS: " os
       install_environment $os
-      echo -e "${COLORS[green]}\n\tThe environment has been installed, please reboot the machine\n${COLORS[end]}"
+      echo -e "\nThe environment has been installed, please reboot the machine\n"
       ;;
     r)
-      echo -e "\n\t${COLORS[red]}Removing the environment${COLORS[end]}\n"
+      echo -e "\nRemoving the environment\n"
       sleep 1.5
-      echo -e "${COLORS[yellow]}Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora${COLORS[end]}"
+      echo -e "Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
       read -p "Enter the number corresponding to your OS: " os
       remove_environment $os
-      echo -e "${COLORS[red]}\n\tThe environment has been removed, please reboot the machine\n${COLORS[end]}"
+      echo -e "\nThe environment has been removed, please reboot the machine\n"
       ;;
     *)
       help_panel
