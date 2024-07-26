@@ -1,30 +1,35 @@
 # **Pentesting Environment on Linux**
 
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3RyMWM5MDR5dGl5NG4ydDVndWI2MGZtbmY5Zmwzbm9zbnV0aHlmbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B4dt6rXq6nABilHTYM/giphy.webp)
+
 This pentesting environment is specifically configured for Linux and utilizes the following tools and configurations:
 
-| Window Manager | bspwm |
-| --- | --- |
-| Keybinding Manager  | sxhkd |
-| Terminal | kitty |
-| Terminal theme | powerlevel10k |
-| File Viewer | bat |
-| Directory Listing | lsd |
+***Window Manager ≡ [bspwm](https://github.com/baskerville/bspwm)*** 
+
+##### *Other programs/utilities used on the enviroment*
+| Keybinding Manager        | sxhkd             |
+| Terminal                  | kitty             |
+| Terminal theme            | powerlevel10k     |
+| File Viewer               | bat               |
+| Directory Listing         | lsd               |
 
 ## Images
 
 ---
 
-![KaliPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/KaliUpdatedPreview.png)
+![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/MainTheme.png)
 
-![ArchPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ArchUpdatedPreview.png)
+![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/CatppuccinTheme.png)
 
-![ParrotPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ParrotUpdatedPreview.png)
+![Preview-3](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/DraculaTheme.png)
 
-![DebianPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DebianUpdatedPreview.png)
+![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/DarkTheme.png)
+
+![Preview-5](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/TokyoTheme)
 
 ## **Installation**
 ---
-To automatically configure the pentesting environment, use the [`installer.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/installer.sh) script included in this repository.
+To automatically configure the pentesting environment, use the [`installer.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/setup.sh) script included in this repository.
 
 ### **Clone the Repository**
 
@@ -35,12 +40,15 @@ git clone https://github.com/Ares5468656f73/HACKBSPWM.git
 cd HACKBSPWM
 ```
 
-Run the **installer.sh** script to install and configure all the necessary tools.
+Run the **setup.sh** script to install and configure all the necessary tools.
 
 ```bash
-chmod +x installer.sh
+chmod +x setup.sh
 ./installer.sh
 ```
+##### *You will see this*
+![FirstPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/SetupPreview-1.png)
+![SecondPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/SetupPreview-2.png)
 
 After the script has finished, log out and log back in to apply all changes.
 
@@ -51,15 +59,23 @@ After the script has finished, log out and log back in to apply all changes.
 
 To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Scripts/changeTheme.sh) script. You will see this:
 
-![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ChangeThemePreview.png)
+![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/ChangeThemePreview.png)
 
-The only thing yout need to do if put a parameter, for example if you want to chenge to Catppuccin theme you run:
+There are ***5*** available themes, thanks to 
 
-```bash
-./changeTheme.sh -c
-```
+|[S4vitar](https://www.youtube.com/@s4vitar)|For main theme color and also for introduce me in cybersecurity world. Thanks S4vi por que se tensó|
+|[Catppuccin](https://catppuccin.com/)|Obviously for the catppuccin theme|
+|[Dracula](https://draculatheme.com/)|Obviously for the dracula theme|
+|[Dark](https://archcraft.io/)|I took the colors of this distro which i used to use|
+|[Tokyo](https://github.com/rxyhn/yoru)|This mf inspired me to create my own enviroment|
 
-To get the changes in your kitty you need to close and open a new terminal, after you log out, reboot or shutdown the machine the theme will apply
+## Rofi
+---
+![Rofi theme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/preview/)
+
+The original `rofi` theme was from [adi1090x](https://github.com/adi1090x/rofi/tree/master)
+
+Image and colors were from *me* (It`s fucking awesome)
 
 >[!IMPORTANT]
 >## **Tool Details**
@@ -88,17 +104,7 @@ To get the changes in your kitty you need to close and open a new terminal, afte
 >
 >lsd is a modern alternative to ls with a beautiful colorized output.
 
-## **Credits**
-
----
-
-The enviroment was configured by me :)
-
-The `kitty` and `polybar` colors are from [s4vitar](https://www.youtube.com/@s4vitar), [dracula](https://draculatheme.com/), [catppuccin](https://catppuccin.com/), [nvchad](https://nvchad.com/)
-
-`Rofi` theme was for: [adi1090x](https://github.com/adi1090x/rofi/tree/master)
-
-Icons and fonts were from [HackNerdFonts](https://www.nerdfonts.com/)
+Fonts were from [HackNerdFonts](https://www.nerdfonts.com/), [Monocraf](https://github.com/IdreesInc/Monocraft) and [Google](https://fonts.google.com/noto/specimen/Noto+Serif+TC)
 
 ## **License**
 
@@ -110,4 +116,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 [Ares](https://github.com/Ares5468656f73/)
 
-This `README.md` file provides comprehensive information about the pentesting environment, how to install it using the `installer.sh` script, a brief description of each tool included, and the contents of the `installer.sh` script itself.
+>[!WARNING]
+>This `README.md` file provides comprehensive information about the pentesting >environment, how to install it using the `setup.sh` script, a brief description >of each tool included, and the contents of the scrips.
