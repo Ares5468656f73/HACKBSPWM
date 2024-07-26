@@ -103,7 +103,7 @@ install_enviroment(){
   cd ~/.config/polybar
   chmod +x *
   if [ -e ~/.config/polybar/config ]; then
-    rm confi   
+    rm config   
   fi
   cd scripts/
   chmod +x *
@@ -184,7 +184,22 @@ install_enviroment(){
       git clone https://github.com/zsh-users/zsh-autosuggestions.git
       chmod +x *
     "
-  fi 
+  fi
+
+  # Install powerlevels10k 
+  if [ "$USER" == "root" ]
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+    exit
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+  else # if user != root
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+    sudo su
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+  fi
 }
 
 remove_enviroment ()
