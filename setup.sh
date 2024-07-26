@@ -56,6 +56,7 @@ install_environment() {
   copy_config_files
   install_fonts
   setup_zsh
+  setup_root_zsh
 }
 
 remove_environment() {
