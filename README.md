@@ -18,7 +18,7 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DarkTheme.png)
 
-![Preview-5](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/TokyoTheme)
+![Preview-5](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/TokyoTheme.png)
 
 ## **Installation**
 ---
