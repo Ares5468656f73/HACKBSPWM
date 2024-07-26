@@ -127,6 +127,28 @@ install_enviroment(){
   elif [ "$user" != "root" ]; then
     sudo cp -r $dotfiles_path/fonts /usr/share/fonts/ 
   fi
+
+  ######################################
+  # Install the zshrc and powerlevel10 #
+  ######################################
+  if [ -f ~/.zshrc ]; then
+    rm ~/.zshrc
+    if [ -f ~/.oh-my-zsh ]; then
+      rm -r ~/.oh-my-zsh
+      cd
+      cp -r $dotfiles_path/.oh-my-zsh .
+    fi
+    cd
+    cp $dotfiles_path/.zshrc .
+  else
+    cd
+    cp $dotfiles_path/.zshrc .
+    if [ -f ~/.oh-my-zsh ]; then
+      rm -r ~/.oh-my-zsh
+      cd
+      cp -r $dotfiles_path/.oh-my-zsh .
+    fi
+  fi
 }
 
 remove_enviroment ()
@@ -183,7 +205,6 @@ remove_enviroment ()
   rm -r ~/.config/kitty/
   rm -r ~/.config/rofi/
   rm -r /home/$user/Wallpapers
-  
 }
 
 parameter_counter=0

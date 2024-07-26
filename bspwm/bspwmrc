@@ -42,3 +42,6 @@ bspc rule -a Screenkey manage=off
 
 # Set default cursor
 xsetroot -cursor_name left_ptr & 
+
+# Set the last wallpaper 
+~/.fehbg
