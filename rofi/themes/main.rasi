@@ -22,12 +22,12 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "CaskaydiaCove Nerd Font 10";
-    background:                  #2E2E2E;   /* A dark gray */
-    background-alt:              #3C3C3C;   /* A slightly lighter gray */
-    foreground:                  #121212;   /* A very dark black */
-    selected:                    #2A2A2A;   /* A dark gray, barely noticeable */
-    active:                      #1F1F1F;   /* A dark gray */
-    urgent:                      #1A1A1A;   /* A very dark gray, almost black */
+    background:                  #c4afb8;   
+    background-alt:              #9fa6af;   
+    foreground:                  #1f0e1e;   
+    selected:                    #9ca3ad;   
+    active:                      #9ca3ad;   
+    urgent:                      #d5869b;   
 }
 
 /*****----- Main Window -----*****/

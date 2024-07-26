@@ -134,9 +134,10 @@ install_enviroment(){
   if [ -f ~/.zshrc ]; then
     rm ~/.zshrc
     if [ -f ~/.oh-my-zsh ]; then
-      rm -r ~/.oh-my-zsh
-      cd
-      cp -r $dotfiles_path/.oh-my-zsh .
+      :
+    else
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      chmod +x *
     fi
     cd
     cp $dotfiles_path/.zshrc .
@@ -144,11 +145,18 @@ install_enviroment(){
     cd
     cp $dotfiles_path/.zshrc .
     if [ -f ~/.oh-my-zsh ]; then
-      rm -r ~/.oh-my-zsh
-      cd
-      cp -r $dotfiles_path/.oh-my-zsh .
+      :
+    else
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      chmod +x *
     fi
   fi
+  
+  cd
+  cd ~/.oh-my-zsh/custom/plugins
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  chmod +x *
 }
 
 remove_enviroment ()
