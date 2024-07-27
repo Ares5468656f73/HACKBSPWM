@@ -13,12 +13,12 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "Monocraft 12";
-    background:                  #342A24;   
-    background-alt:              #57503C;   
-    foreground:                  #E83835;   
-    selected:                    #5D8FAB;   
-    active:                      #CFAB8E;   
-    urgent:                      #B93330;   
+    background:                  #000000;   
+    background-alt:              #262626;   
+    foreground:                  #f0daa8;   
+    selected:                    #edb17b;   
+    active:                      #83a27e;   
+    urgent:                      #ce594f;   
 }
 
 /*****----- Main Window -----*****/
@@ -50,7 +50,7 @@ mainbox {
 imagebox {
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/Ferrari_F40.jpeg", height);
+    background-image:            url("~/.config/rofi/images/Samurai_cat.jpeg", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }
