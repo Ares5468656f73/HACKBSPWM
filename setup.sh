@@ -13,52 +13,6 @@ if [ -z "$dotfiles_path" ]; then
   exit 1
 fi
 
-install_environment() {
-  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
-  local extra_packages="lsd bat"
-  local os=$1
-  local update_cmd install_cmd
-
-  case $os in
-    1)
-      update_cmd="sudo apt update && sudo apt upgrade -y"
-      install_cmd="sudo apt install -y $packages"
-      ;;
-    2)
-      update_cmd="sudo pacman -Syu"
-      install_cmd="sudo pacman -S --noconfirm $packages $extra_packages"
-      ;;
-    3)
-      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
-      install_cmd="sudo dnf install -y $packages"
-      ;;
-    *)
-      echo "Invalid option"
-      exit 1
-      ;;
-  esac
-
-  if [ "$user" == "root" ]; then
-    echo "You can't perform this operation as root."
-    exit 1
-  fi
-
-  eval $update_cmd
-  eval $install_cmd
-
-  chsh -s $(which zsh)
-
-  if [[ $os == 1 ]]; then
-    cd $dotfiles_path
-    sudo dpkg -i bat_0.24.0_amd64.deb lsd_1.1.2_amd64.deb
-  fi
-
-  copy_config_files
-  install_fonts
-  setup_zsh
-  setup_root_zsh
-}
-
 remove_environment() {
   local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
   local os=$1
@@ -130,12 +84,11 @@ setup_zsh() {
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
   chmod +x $plugins_dir/*
-
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 }
 
 setup_root_zsh() {
+  sudo su
+  cd
   local zsh_custom="/root/.oh-my-zsh/custom"
   local plugins_dir="$zsh_custom/plugins"
 
@@ -147,14 +100,59 @@ setup_root_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
-  cp $dotfiles_path/.zshrc /root
+  cd
+  cp $dotfiles_path/.zshrc_root .
+  mv .zshrc_root .zshrc
 
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
   chmod +x $plugins_dir/*
+}
 
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k
-  echo 'source /root/powerlevel10k/powerlevel10k.zsh-theme' >>/root/.zshrc
+install_environment() {
+  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
+  local extra_packages="lsd bat"
+  local os=$1
+  local update_cmd install_cmd
+
+  case $os in
+    1)
+      update_cmd="sudo apt update && sudo apt upgrade -y"
+      install_cmd="sudo apt install -y $packages"
+      ;;
+    2)
+      update_cmd="sudo pacman -Syu"
+      install_cmd="sudo pacman -S --noconfirm $packages $extra_packages"
+      ;;
+    3)
+      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
+      install_cmd="sudo dnf install -y $packages"
+      ;;
+    *)
+      echo "Invalid option"
+      exit 1
+      ;;
+  esac
+
+  if [ "$user" == "root" ]; then
+    echo "You can't perform this operation as root."
+    exit 1
+  fi
+
+  eval $update_cmd
+  eval $install_cmd
+
+  chsh -s $(which zsh)
+
+  if [[ $os == 1 ]]; then
+    cd $dotfiles_path
+    sudo dpkg -i bat_0.24.0_amd64.deb lsd_1.1.2_amd64.deb
+  fi
+
+  copy_config_files
+  install_fonts
+  setup_zsh
+  setup_root_zsh
 }
 
 while getopts "ir" arg; do

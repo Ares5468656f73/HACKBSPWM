@@ -13,13 +13,13 @@ xrandr --output "$primary_monitor" --mode 1920x1080 # <- your resolution
 
 # Configure bspwm monitors and desktops
 if [ -z "$primary_monitor" ] && [ -z "$secondary_monitor" ]; then
-  bspc monitor -d "防" "暗" "保" "攻" "脅" "花" "守" "脆"
+  bspc monitor -d 'α' 'β' 'γ' 'δ' 'ε' 'ζ' 'η' 'θ'
 else
   if [ -z "$secondary_monitor" ]; then
-    bspc monitor "$primary_monitor" -d "防" "暗" "保" "攻" "脅" "花" "守" "脆" 
+    bspc monitor "$primary_monitor" -d 'α' 'β' 'γ' 'δ' 'ε' 'ζ' 'η' 'θ'
   else
-    bspc monitor "$primary_monitor" -d "防" "暗" "保" "攻"
-    bspc monitor "$secondary_monitor" -d  "脅" "花" "守" "脆"
+    bspc monitor "$primary_monitor" -d 'α' 'β' 'γ' 'δ'
+    bspc monitor "$secondary_monitor" -d 'ε' 'ζ' 'η' 'θ'
   fi
 fi
 
