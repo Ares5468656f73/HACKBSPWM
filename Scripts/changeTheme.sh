@@ -45,13 +45,13 @@ changeToTokyo ()
   
   echo "
   [colors]
-  background = #101213
-  background-alt = #1b1d1e
-  foreground = #edeff0
-  primary = #67afc1
-  secondary = #ebc97e
-  alert = #d8595f
-  disabled = #6791c9
+  background = #0d0f14
+  background-alt = #252b3a
+  foreground = #dbe3bb
+  primary = #51b1d9
+  secondary = #d99441
+  alert = #e56a66
+  disabled = #3e4860
   " > ~/.config/polybar/colors.ini
 
   echo " " > ~/.config/kitty/color.ini
@@ -62,40 +62,40 @@ changeToTokyo ()
   window_padding_width  20
 
   # Special
-  foreground #abb2bf
-  background #101213
+  foreground #dbe3bb
+  background #0d0f14
 
   # Black
-  color0 #232526
-  color8 #2c2e2f
+  color0 #0e0e0e
+  color8 #0e0e0e
 
   # Red
-  color1 #df5b61
-  color9 #e8646a
+  color1 #e56a66
+  color9 #e56a66
 
   # Green
-  color2  #78b892
-  color10 #81c19b
+  color2  #81a780
+  color10 #81a780
 
   # Yellow
-  color3  #de8f78
-  color11 #e79881
+  color3  #d99441
+  color11 #d99441
 
   # Blue
-  color4  #6791c9
-  color12 #709ad2
+  color4  #51b1d9
+  color12 #51b1d9
 
   # Magenta
-  color5  #bc83e3
-  color13 #c58cec
+  color5  #8a7ac9
+  color13 #8a7ac9
 
   # Cyan
-  color6  #67afc1
-  color14 #70b8ca
+  color6  #3d87a5
+  color14 #3d87a5
 
   # White
-  color7  #e4e6e7
-  color15 #f2f4f5
+  color7  #dbe3bb
+  color15 #dbe3bb
 
   # Cursor
   cursor #c0caf5
@@ -108,7 +108,7 @@ changeToTokyo ()
 
   bspc wm -r
   pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Tokyo_night.png
+  feh --bg-fill ~/Wallpapers/Retrofuturistic_tokyo.jpg
 }
 
 changeToMain ()
