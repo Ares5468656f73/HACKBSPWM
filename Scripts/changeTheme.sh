@@ -36,7 +36,6 @@ helpPanel ()
   echo -e "\t\t${blueColour}-m)${endColour} ${grayColour}Main theme${endColour}"
   echo -e "\t\t${yellowColour}-d)${endColour} ${grayColour}Dark color${endColour}"
   echo -e "\t\t${purpleColour}-c)${endColour} ${grayColour}Catppuccin theme${endColour}"
-  echo -e "\t\t${turquoiseColour}-v)${endColour} ${grayColour}Dracula theme${endColour}"
   echo -e "\t\t${grayColour}-t)${endColour} ${grayColour}Tokyo theme${endColour}"
 }
 
@@ -183,88 +182,6 @@ changeToMain ()
   feh --bg-fill ~/Wallpapers/Main_wallpaper.jpg
 }
 
-changeToDracula ()
-{
-  echo " " > ~/.config/polybar/colors.ini
-
-  echo "
-  [colors]
-  background = #282a36
-  background-alt = #44475a
-  foreground = #f8f8f2
-  primary = #bd93f9
-  secondary = #ffb86c
-  alert = #ff5555
-  disabled = #6272a4   
-  " > ~/.config/polybar/colors.ini
-  
-  echo " " > ~/.config/kitty/color.ini
-  echo "
-  # https://draculatheme.com/kitty
-
-  foreground            #f8f8f2
-  background            #282a36
-  selection_foreground  #ffffff
-  selection_background  #44475a
-
-  url_color #8be9fd
-
-  # black
-  color0  #21222c
-  color8  #6272a4
-
-  # red
-  color1  #ff5555
-  color9  #ff6e6e
-
-  # green
-  color2  #50fa7b
-  color10 #69ff94
-
-  # yellow
-  color3  #f1fa8c
-  color11 #ffffa5
-
-  # blue
-  color4  #bd93f9
-  color12 #d6acff
-
-  # magenta
-  color5  #ff79c6
-  color13 #ff92df
-
-  # cyan
-  color6  #8be9fd
-  color14 #a4ffff
-
-  # white
-  color7  #f8f8f2
-  color15 #ffffff
-
-  # Cursor colors
-  cursor            #f8f8f2
-  cursor_text_color background
-
-  # Tab bar colors
-  active_tab_foreground   #282a36
-  active_tab_background   #f8f8f2
-  inactive_tab_foreground #282a36
-  inactive_tab_background #6272a4
-
-  # Marks
-  mark1_foreground #282a36
-  mark1_background #ff5555
-
-  # Splits/Windows
-  active_border_color #f8f8f2
-  inactive_border_color #6272a4
-  " > ~/.config/kitty/color.ini
-  
-  bspc wm -r
-  pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Dracula_Ship.png
-}
-
 changeToDark ()
 {
   echo " " > ~/.config/polybar/colors.ini
@@ -334,7 +251,7 @@ changeToDark ()
 
   bspc wm -r
   pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Dark_theme.png
+  feh --bg-fill ~/Wallpapers/Nasa_aesthetic.png
 }
 
 changeToCatppuccin ()
