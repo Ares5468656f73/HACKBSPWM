@@ -13,12 +13,12 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "Monocraft 12";
-    background:                  #1F0F1F;   
-    background-alt:              #4D4957;   
-    foreground:                  #658C95;   
-    selected:                    #B5AEB9;   
-    active:                      #7F6F7C;   
-    urgent:                      #403040;   
+    background:                  #0A1930;   
+    background-alt:              #8CC5E0;   
+    foreground:                  #122949;   
+    selected:                    #C9F3FA;   
+    active:                      #846866;   
+    urgent:                      #3DA4D9;   
 }
 
 /*****----- Main Window -----*****/
@@ -50,7 +50,7 @@ mainbox {
 imagebox {
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/a.jpg", height);
+    background-image:            url("~/.config/rofi/images/Space_window_pixel_art.jpeg", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }

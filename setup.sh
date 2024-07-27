@@ -1,30 +1,30 @@
 #!/usr/bin/env bash
 
-# Función para mostrar el panel de ayuda
-help_panel() {
-  echo -e "\t-i) Instalar el entorno"
-  echo -e "\t-r) Eliminar el entorno\n"
+# Display help panel
+show_help() {
+  echo -e "\t-i) Install the environment"
+  echo -e "\t-r) Remove the environment\n"
 }
 
-# Verifica si el directorio HACKBSPWM existe
+# Check if HACKBSPWM directory exists
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
 if [ -z "$dotfiles_path" ]; then
-  echo "Error: Directorio HACKBSPWM no encontrado."
+  echo "Error: HACKBSPWM directory not found."
   exit 1
 fi
 
 user=$(whoami)
 if [ "$user" == "root" ]; then
-  echo "No puedes realizar esta operación como root."
+  echo "Operation cannot be performed as root."
   exit 1
 fi
 
-# Función para eliminar archivos de configuración
+# Remove configuration files
 remove_config_files() {
   rm -rf ~/.config/{bspwm,sxhkd,kitty,polybar,rofi} ~/Wallpapers ~/Scripts
 }
 
-# Función para copiar archivos de configuración
+# Copy configuration files
 copy_config_files() {
   local config_dirs=("bspwm" "sxhkd" "kitty" "polybar" "rofi")
   local src_dir=$dotfiles_path
@@ -39,12 +39,12 @@ copy_config_files() {
   chmod +x ~/Scripts/*
 }
 
-# Función para instalar fuentes
+# Install fonts
 install_fonts() {
   sudo cp -r "$dotfiles_path/fonts" /usr/share/fonts
 }
 
-# Función para configurar Zsh para el usuario actual
+# Setup Zsh for the current user
 setup_zsh() {
   local zsh_custom="$HOME/.oh-my-zsh/custom"
   local plugins_dir="$zsh_custom/plugins"
@@ -64,9 +64,9 @@ setup_zsh() {
   chmod +x "$plugins_dir"/*
 }
 
-# Función para configurar Zsh para root
+# Setup Zsh for root
 setup_root_zsh() {
-  sudo su -c 'bash -s' <<'EOF'
+  sudo bash -c '
     local zsh_custom="/root/.oh-my-zsh/custom"
     local plugins_dir="$zsh_custom/plugins"
 
@@ -78,15 +78,15 @@ setup_root_zsh() {
       sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
 
-    cp "$dotfiles_path/.zshrc_root" /root/.zshrc
+    cp "'$dotfiles_path'/.zshrc_root" /root/.zshrc
 
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
     git clone https://github.com/zsh-users/zsh-autosuggestions.git "$plugins_dir/zsh-autosuggestions"
     chmod +x "$plugins_dir"/*
-EOF
+  '
 }
 
-# Función para instalar el entorno
+# Install the environment
 install_environment() {
   local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
   local extra_packages="lsd bat"
@@ -107,7 +107,7 @@ install_environment() {
       install_cmd="sudo dnf install -y $packages"
       ;;
     *)
-      echo "Opción inválida"
+      echo "Invalid option"
       exit 1
       ;;
   esac
@@ -128,7 +128,7 @@ install_environment() {
   setup_root_zsh
 }
 
-# Función para eliminar el entorno
+# Remove the environment
 remove_environment() {
   local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
   local os=$1
@@ -148,7 +148,7 @@ remove_environment() {
       remove_cmd="sudo dnf remove -y $packages"
       ;;
     *)
-      echo "Opción inválida"
+      echo "Invalid option"
       exit 1
       ;;
   esac
@@ -159,32 +159,32 @@ remove_environment() {
   remove_config_files
 }
 
-# Parseo de opciones de línea de comandos
-while getopts "ir" arg; do
-  case $arg in
+# Command line option parsing
+while getopts "ir" opt; do
+  case $opt in
     i)
-      echo -e "\nInstalando el entorno\n"
+      echo -e "\nInstalling the environment\n"
       sleep 1.5
-      echo -e "Seleccione su sistema operativo:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
-      read -p "Ingrese el número correspondiente a su SO: " os
+      echo -e "Select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
+      read -p "Enter the number corresponding to your OS: " os
       install_environment $os
-      echo -e "\nEl entorno ha sido instalado, por favor reinicie la máquina\n"
+      echo -e "\nThe environment has been installed, please reboot the machine\n"
       ;;
     r)
-      echo -e "\nEliminando el entorno\n"
+      echo -e "\nRemoving the environment\n"
       sleep 1.5
-      echo -e "Seleccione su sistema operativo:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
-      read -p "Ingrese el número correspondiente a su SO: " os
+      echo -e "Select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
+      read -p "Enter the number corresponding to your OS: " os
       remove_environment $os
-      echo -e "\nEl entorno ha sido eliminado, por favor reinicie la máquina\n"
+      echo -e "\nThe environment has been removed, please reboot the machine\n"
       ;;
     *)
-      help_panel
+      show_help
       ;;
   esac
 done
 
-# Mostrar el panel de ayuda si no se pasaron opciones
+# Show the help panel if no options were passed
 if [ $OPTIND -eq 1 ]; then
-  help_panel
+  show_help
 fi
