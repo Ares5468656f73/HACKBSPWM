@@ -1,6 +1,6 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-source ~/.oh-my-zsh/oh-my-zsh.sh
+source /root/.oh-my-zsh/oh-my-zsh.sh
 
 # Detect distro for automatic updates and install pkg
 function detect_distro {
@@ -20,14 +20,14 @@ function pkgInstall {
 
     if command -v apt-get >/dev/null; then
         # Debian, Ubuntu, Linux Mint
-        sudo apt-get update
-        sudo apt-get install -y $package
+        apt-get update
+        apt-get install -y $package
     elif command -v dnf >/dev/null; then
         # Fedora
-        sudo dnf install -y $package
+        dnf install -y $package
     elif command -v pacman >/dev/null; then
         # Arch, Manjaro
-        sudo pacman -S --noconfirm $package
+        pacman -S --noconfirm $package
     else
         echo "Unsupported distribution or package manager"
         return 1
@@ -40,14 +40,14 @@ function systemUpgrade {
 
     if command -v apt-get >/dev/null; then
         # Debian, Ubuntu, Linux Mint
-        sudo apt-get update
-        sudo apt-get upgrade -y
+        apt-get update
+        apt-get upgrade -y
     elif command -v dnf >/dev/null; then
         # Fedora
-        sudo dnf upgrade --refresh -y
+        dnf upgrade --refresh -y
     elif command -v pacman >/dev/null; then
         # Arch, Manjaro
-        sudo pacman -Syu --noconfirm
+        pacman -Syu --noconfirm
     else
         echo "Unsupported distribution or package manager"
         return 1
@@ -94,14 +94,21 @@ plugins=(
     zsh-autosuggestions
 )
 
+# Start a http server to exchange information (with python)
+startServer() {
+	local ip=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1)
+	python3 -m http.server -b $ip
+}
+
+# Visualize and image in terminal (Only in kitty)
+viewImage() {
+	local image=$1
+	kitty +kitten icat $image
+}
+
 # Battery percentage function
 get_battery_percentage() {
-    cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo "󱉝 "
+    cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || :
 }
 
-# Number of process in execution
-get_process_count() {
-    ps aux | wc -l
-}
-
-PROMPT='%F{cyan} %n%f: %F{yellow}  %~%f $(git_prompt_info) %F{green}$(get_battery_percentage)%f %F{red}:$(get_process_count)%f %F{magenta} %f '
+PROMPT='%F{red} %n%f %F{yellow}   %~%f $(git_prompt_info) %F{green}$(get_battery_percentage)%f%F{magenta} %f '

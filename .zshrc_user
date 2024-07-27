@@ -20,14 +20,14 @@ function pkgInstall {
 
     if command -v apt-get >/dev/null; then
         # Debian, Ubuntu, Linux Mint
-        apt-get update
-        apt-get install -y $package
+        sudo apt-get update
+        sudo apt-get install -y $package
     elif command -v dnf >/dev/null; then
         # Fedora
-        dnf install -y $package
+        sudo dnf install -y $package
     elif command -v pacman >/dev/null; then
         # Arch, Manjaro
-        pacman -S --noconfirm $package
+        sudo pacman -S --noconfirm $package
     else
         echo "Unsupported distribution or package manager"
         return 1
@@ -40,14 +40,14 @@ function systemUpgrade {
 
     if command -v apt-get >/dev/null; then
         # Debian, Ubuntu, Linux Mint
-        apt-get update
-        apt-get upgrade -y
+        sudo apt-get update
+        sudo apt-get upgrade -y
     elif command -v dnf >/dev/null; then
         # Fedora
-        dnf upgrade --refresh -y
+        sudo dnf upgrade --refresh -y
     elif command -v pacman >/dev/null; then
         # Arch, Manjaro
-        pacman -Syu --noconfirm
+        sudo pacman -Syu --noconfirm
     else
         echo "Unsupported distribution or package manager"
         return 1
@@ -94,14 +94,21 @@ plugins=(
     zsh-autosuggestions
 )
 
+# Start a http server to exchange information (with python)
+startServer() {
+	local ip=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1)
+	python3 -m http.server -b $ip
+}
+
+# Visualize and image in terminal (Only in kitty)
+viewImage() {
+	local image=$1
+	kitty +kitten icat $image
+}
+
 # Battery percentage function
 get_battery_percentage() {
-    cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo "󱉝 "
+    cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || :
 }
 
-# Number of process in execution
-get_process_count() {
-    ps aux | wc -l
-}
-
-PROMPT='%F{red} %n%f: %F{yellow}  %~%f $(git_prompt_info) %F{green}$(get_battery_percentage)%f %F{red}:$(get_process_count)%f %F{magenta} %f '
+PROMPT='%F{blue} %n%f %F{yellow}   %~%f $(git_prompt_info) %F{green}$(get_battery_percentage)%f%F{magenta} %f '

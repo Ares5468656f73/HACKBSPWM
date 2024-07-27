@@ -1,72 +1,50 @@
 #!/usr/bin/env bash
 
+# Función para mostrar el panel de ayuda
 help_panel() {
-  echo -e "\t-i) Install the environment"
-  echo -e "\t-r) Remove the environment\n"
+  echo -e "\t-i) Instalar el entorno"
+  echo -e "\t-r) Eliminar el entorno\n"
 }
 
-user=$(whoami)
+# Verifica si el directorio HACKBSPWM existe
 dotfiles_path=$(find / -name "HACKBSPWM" 2>/dev/null)
-
 if [ -z "$dotfiles_path" ]; then
-  echo "Error: HACKBSPWM directory not found."
+  echo "Error: Directorio HACKBSPWM no encontrado."
   exit 1
 fi
 
-remove_environment() {
-  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
-  local os=$1
-  local update_cmd remove_cmd
+user=$(whoami)
+if [ "$user" == "root" ]; then
+  echo "No puedes realizar esta operación como root."
+  exit 1
+fi
 
-  case $os in
-    1)
-      update_cmd="sudo apt update && sudo apt upgrade -y"
-      remove_cmd="sudo apt remove --purge -y $packages"
-      ;;
-    2)
-      update_cmd="sudo pacman -Syu"
-      remove_cmd="sudo pacman -R --noconfirm $packages"
-      ;;
-    3)
-      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
-      remove_cmd="sudo dnf remove -y $packages"
-      ;;
-    *)
-      echo "Invalid option"
-      exit 1
-      ;;
-  esac
-
-  if [ "$user" == "root" ]; then
-    echo "You can't perform this operation as root."
-    exit 1
-  fi
-
-  eval $update_cmd
-  eval $remove_cmd
-
-  remove_config_files
+# Función para eliminar archivos de configuración
+remove_config_files() {
+  rm -rf ~/.config/{bspwm,sxhkd,kitty,polybar,rofi} ~/Wallpapers ~/Scripts
 }
 
+# Función para copiar archivos de configuración
 copy_config_files() {
-  local config_dirs=("bspwm" "sxhkd" "polybar" "kitty" "rofi")
+  local config_dirs=("bspwm" "sxhkd" "kitty" "polybar" "rofi")
   local src_dir=$dotfiles_path
 
   for dir in "${config_dirs[@]}"; do
-    cp -r $src_dir/$dir ~/.config
+    cp -r "$src_dir/$dir" ~/.config
   done
 
-  cp -r $src_dir/Wallpapers /home/$user
+  cp -r "$src_dir/Wallpapers" ~
   chmod +x ~/.config/{bspwm,bspwm/scripts,sxhkd,polybar,polybar/scripts,kitty,rofi/themes}/*
-  cp -r $src_dir/Scripts ~
+  cp -r "$src_dir/Scripts" ~
   chmod +x ~/Scripts/*
 }
 
+# Función para instalar fuentes
 install_fonts() {
-  local fonts_dir="/usr/share/fonts"
-  sudo cp -r $dotfiles_path/fonts $fonts_dir
+  sudo cp -r "$dotfiles_path/fonts" /usr/share/fonts
 }
 
+# Función para configurar Zsh para el usuario actual
 setup_zsh() {
   local zsh_custom="$HOME/.oh-my-zsh/custom"
   local plugins_dir="$zsh_custom/plugins"
@@ -79,36 +57,36 @@ setup_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
-  cp $dotfiles_path/.zshrc ~
+  cp "$dotfiles_path/.zshrc_user" ~/.zshrc
 
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
-  chmod +x $plugins_dir/*
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$plugins_dir/zsh-autosuggestions"
+  chmod +x "$plugins_dir"/*
 }
 
+# Función para configurar Zsh para root
 setup_root_zsh() {
-  sudo su
-  cd
-  local zsh_custom="/root/.oh-my-zsh/custom"
-  local plugins_dir="$zsh_custom/plugins"
+  sudo su -c 'bash -s' <<'EOF'
+    local zsh_custom="/root/.oh-my-zsh/custom"
+    local plugins_dir="$zsh_custom/plugins"
 
-  if [ -f /root/.zshrc ]; then
-    rm /root/.zshrc
-  fi
+    if [ -f /root/.zshrc ]; then
+      rm /root/.zshrc
+    fi
 
-  if [ ! -d /root/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
+    if [ ! -d /root/.oh-my-zsh ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
 
-  cd
-  cp $dotfiles_path/.zshrc_root .
-  mv .zshrc_root .zshrc
+    cp "$dotfiles_path/.zshrc_root" /root/.zshrc
 
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_dir/zsh-syntax-highlighting
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $plugins_dir/zsh-autosuggestions
-  chmod +x $plugins_dir/*
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$plugins_dir/zsh-autosuggestions"
+    chmod +x "$plugins_dir"/*
+EOF
 }
 
+# Función para instalar el entorno
 install_environment() {
   local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
   local extra_packages="lsd bat"
@@ -129,23 +107,18 @@ install_environment() {
       install_cmd="sudo dnf install -y $packages"
       ;;
     *)
-      echo "Invalid option"
+      echo "Opción inválida"
       exit 1
       ;;
   esac
-
-  if [ "$user" == "root" ]; then
-    echo "You can't perform this operation as root."
-    exit 1
-  fi
 
   eval $update_cmd
   eval $install_cmd
 
   chsh -s $(which zsh)
 
-  if [[ $os == 1 ]]; then
-    cd $dotfiles_path
+  if [ "$os" -eq 1 ]; then
+    cd "$dotfiles_path"
     sudo dpkg -i bat_0.24.0_amd64.deb lsd_1.1.2_amd64.deb
   fi
 
@@ -155,23 +128,55 @@ install_environment() {
   setup_root_zsh
 }
 
+# Función para eliminar el entorno
+remove_environment() {
+  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
+  local os=$1
+  local update_cmd remove_cmd
+
+  case $os in
+    1)
+      update_cmd="sudo apt update && sudo apt upgrade -y"
+      remove_cmd="sudo apt remove --purge -y $packages"
+      ;;
+    2)
+      update_cmd="sudo pacman -Syu"
+      remove_cmd="sudo pacman -R --noconfirm $packages"
+      ;;
+    3)
+      update_cmd="sudo dnf update -y && sudo dnf upgrade -y"
+      remove_cmd="sudo dnf remove -y $packages"
+      ;;
+    *)
+      echo "Opción inválida"
+      exit 1
+      ;;
+  esac
+
+  eval $update_cmd
+  eval $remove_cmd
+
+  remove_config_files
+}
+
+# Parseo de opciones de línea de comandos
 while getopts "ir" arg; do
   case $arg in
     i)
-      echo -e "\nInstalling the environment\n"
+      echo -e "\nInstalando el entorno\n"
       sleep 1.5
-      echo -e "Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
-      read -p "Enter the number corresponding to your OS: " os
+      echo -e "Seleccione su sistema operativo:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
+      read -p "Ingrese el número correspondiente a su SO: " os
       install_environment $os
-      echo -e "\nThe environment has been installed, please reboot the machine\n"
+      echo -e "\nEl entorno ha sido instalado, por favor reinicie la máquina\n"
       ;;
     r)
-      echo -e "\nRemoving the environment\n"
+      echo -e "\nEliminando el entorno\n"
       sleep 1.5
-      echo -e "Please select your operating system:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
-      read -p "Enter the number corresponding to your OS: " os
+      echo -e "Seleccione su sistema operativo:\n1) Debian/Ubuntu\n2) Arch\n3) Fedora"
+      read -p "Ingrese el número correspondiente a su SO: " os
       remove_environment $os
-      echo -e "\nThe environment has been removed, please reboot the machine\n"
+      echo -e "\nEl entorno ha sido eliminado, por favor reinicie la máquina\n"
       ;;
     *)
       help_panel
@@ -179,6 +184,7 @@ while getopts "ir" arg; do
   esac
 done
 
+# Mostrar el panel de ayuda si no se pasaron opciones
 if [ $OPTIND -eq 1 ]; then
   help_panel
 fi
