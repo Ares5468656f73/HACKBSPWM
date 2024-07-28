@@ -24,5 +24,5 @@ else
     # Format the ports to show correctly in the polybar
     FORMATTED_PORTS=$(echo $OPEN_PORTS | tr '\n' ' ')
     # show the open ports
-    echo "%{F$alert} %{F-} %{F$secondary}$FORMATTED_PORTS%{F-}"
+    echo "%{F$alert}⛏ %{F-} %{F$secondary}$FORMATTED_PORTS%{F-}"
 fi
