@@ -73,6 +73,7 @@ Image and colors were from *me* (It`s fucking awesome)
 New `.zshrc` for [user](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_user) and [root](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_root)
 
 With new ***prompt*** 
+
 ![PromptMainPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptMainPreview.png)
 ![PromptCatppuccinPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptCatppuccinPreview.png)
 ![PromptDarkPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptDarkPreview.png)
