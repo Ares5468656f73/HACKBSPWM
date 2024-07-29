@@ -10,7 +10,7 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ---
 
-![GeneralPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Floating_preview.mp4)
+[GeneralPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Floating_preview.mp4)
 
 ![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/MainTheme.png)
 
