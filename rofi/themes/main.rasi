@@ -15,7 +15,7 @@ configuration {
     font:                        "Monocraft 12";
     background:                  #658381;   
     background-alt:              #C5C3B1;   
-    foreground:                  #628079;   
+    foreground:                  #ffac41;   
     selected:                    #191D27;   
     active:                      #292A2E;   
     urgent:                      #161419;   
