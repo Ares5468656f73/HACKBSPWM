@@ -19,8 +19,11 @@ super + {_,shift + }w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
+super + shift + m
+	bspc node -t floating
+
 super + m
-	bspc desktop -l next
+	bspc node -t tiled
 
 ##############
 # focus/swap #
