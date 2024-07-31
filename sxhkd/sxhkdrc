@@ -10,10 +10,6 @@ super + Return
 super + d
 	rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi
 
-# powermenu launcher
-super + shift
-	rofi -show drun -theme ~/.config/rofi/themes/powermenu.rasi
-
 #################
 # bspwm hotkeys #
 #################

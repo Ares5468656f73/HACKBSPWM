@@ -60,7 +60,7 @@ color5  #ba9af7
 color13 #ba9af7
 
 # Cyan
-color6  #
+color6  #7dcfff
 color14 #7dcfff
 
 # White
