@@ -14,12 +14,12 @@ changeToTokyo ()
   
   echo "
 [colors]
-background = #16161e
+background = #15151e
 background-alt = #1a1b26
-foreground = #a9b1d6
-primary = #698cd6
-secondary = #e0af68
-alert = #f7768e
+foreground = #c0c9f5
+primary = #79a1f7
+secondary = #f7768e
+alert = #ff9e63
 disabled = #414868
 " > ~/.config/polybar/colors.ini
 
@@ -32,8 +32,8 @@ disabled = #414868
 # Based on Tokyo Night color theme for Visual Studio Code
 # https://github.com/enkia/tokyo-night-vscode-theme
 
-foreground #a9b1d6
-background #1a1b26
+foreground #c0c9f5
+background #15151e
 
 # Black
 color0 #414868
@@ -44,28 +44,28 @@ color1 #f7768e
 color9 #f7768e
 
 # Green
-color2  #73daca
-color10 #73daca
+color2  #08c294
+color10 #08c294
 
 # Yellow
-color3  #e0af68
-color11 #e0af68
+color3  #ff9e63
+color11 #ff9e63
 
 # Blue
-color4  #7aa2f7
-color12 #7aa2f7
+color4  #79a1f7
+color12 #79a1f7
 
 # Magenta
-color5  #bb9af7
-color13 #bb9af7
+color5  #ba9af7
+color13 #ba9af7
 
 # Cyan
-color6  #7dcfff
+color6  #
 color14 #7dcfff
 
 # White
-color7  #c0caf5
-color15 #c0caf5
+color7  #c0c9f5
+color15 #c0c9f5
 
 # Cursor
 cursor #c0caf5
