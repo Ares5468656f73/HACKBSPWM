@@ -4,7 +4,6 @@ helpPanel ()
 {
   echo -e "\tAvalible themes"
   echo -e "\t\t-m) Main theme"
-  echo -e "\t\t-d) Dark color"
   echo -e "\t\t-c) Catppuccin theme"
   echo -e "\t\t-t) Tokyo theme"
 }
@@ -15,48 +14,100 @@ changeToTokyo ()
   
   echo "
 [colors]
-background = #0d0f14
-background-alt = #252b3a
-foreground = #dbe3bb
-primary = #51b1d9
-secondary = #d99441
-alert = #e56a66
-disabled = #3e4860
+background = #16161e
+background-alt = #1a1b26
+foreground = #a9b1d6
+primary = #698cd6
+secondary = #e0af68
+alert = #f7768e
+disabled = #414868
 " > ~/.config/polybar/colors.ini
 
   echo " " > ~/.config/kitty/color.ini
 
   echo "
-cursor_shape          Underline
-cursor_underline_thickness 1
-window_padding_width  20
-foreground #dbe3bb
-background #0d0f14
-color0 #0e0e0e
-color8 #0e0e0e
-color1 #e56a66
-color9 #e56a66
-color2  #81a780
-color10 #81a780
-color3  #d99441
-color11 #d99441
-color4  #51b1d9
-color12 #51b1d9
-color5  #8a7ac9
-color13 #8a7ac9
-color6  #3d87a5
-color14 #3d87a5
-color7  #dbe3bb
-color15 #dbe3bb
+# Tokyo Night color scheme for kitty terminal emulator
+# https://github.com/davidmathers/tokyo-night-kitty-theme
+#
+# Based on Tokyo Night color theme for Visual Studio Code
+# https://github.com/enkia/tokyo-night-vscode-theme
+
+foreground #a9b1d6
+background #1a1b26
+
+# Black
+color0 #414868
+color8 #414868
+
+# Red
+color1 #f7768e
+color9 #f7768e
+
+# Green
+color2  #73daca
+color10 #73daca
+
+# Yellow
+color3  #e0af68
+color11 #e0af68
+
+# Blue
+color4  #7aa2f7
+color12 #7aa2f7
+
+# Magenta
+color5  #bb9af7
+color13 #bb9af7
+
+# Cyan
+color6  #7dcfff
+color14 #7dcfff
+
+# White
+color7  #c0caf5
+color15 #c0caf5
+
+# Cursor
 cursor #c0caf5
 cursor_text_color #1a1b26
-selection_foreground #7aa2f7
+
+# Selection highlight
+selection_foreground none
 selection_background #28344a
+
+# The color for highlighting URLs on mouse-over
+url_color #9ece6a
+
+# Window borders
+active_border_color #3d59a1
+inactive_border_color #101014
+bell_border_color #e0af68
+
+# Tab bar
+tab_bar_style fade
+tab_fade 1
+active_tab_foreground   #3d59a1
+active_tab_background   #16161e
+active_tab_font_style   bold
+inactive_tab_foreground #787c99
+inactive_tab_background #16161e
+inactive_tab_font_style bold
+tab_bar_background #101014
+
+# Title bar
+macos_titlebar_color #16161e
+
+# Storm
+# background #24283b
+# cursor_text_color #24283b
+# active_tab_background   #1f2335
+# inactive_tab_background #1f2335
+# macos_titlebar_color #1f2335
 " > ~/.config/kitty/color.ini
 
   bspc wm -r
   pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Retrofuturistic_tokyo.jpg
+  feh --bg-fill ~/Wallpapers/90s_Girl.jpg
 }
 
 changeToMain ()
@@ -107,56 +158,6 @@ selection_background #28344a
   bspc wm -r
   pkill -USR1 -f kitty
   feh --bg-fill ~/Wallpapers/Main_wallpaper.jpg
-}
-
-changeToDark ()
-{
-  echo " " > ~/.config/polybar/colors.ini
-
-  echo "
-[colors]
-background = #1e2128
-background-alt = #565c64
-foreground = #abb2bf
-primary = #62aeef
-secondary = #e5c07a
-alert = #e06b74
-disabled = #42464e 
-" > ~/.config/polybar/colors.ini
-  
-  echo " " > ~/.config/kitty/color.ini
-
-  echo "
-cursor_shape          Underline
-cursor_underline_thickness 1
-window_padding_width  20
-foreground #abb2bf
-background #1e2128
-color0 #32363d
-color8 #50545b
-color1 #e06b74
-color9 #ea757e
-color2  #98c379
-color10 #a2cd83
-color3  #e5c07a
-color11 #efca84
-color4  #62aeef
-color12 #6cb8f9
-color5  #c778dd
-color13 #d282e7
-color6  #55b6c2
-color14 #5fc0cc
-color7  #abb2bf
-color15 #b5bcc9
-cursor #c0caf5
-cursor_text_color #1a1b26
-selection_foreground #7aa2f7
-selection_background #28344a
-" > ~/.config/kitty/color.ini
-
-  bspc wm -r
-  pkill -USR1 -f kitty
-  feh --bg-fill ~/Wallpapers/Nasa_aesthetic.png
 }
 
 changeToCatppuccin ()
@@ -234,12 +235,8 @@ while getopts "mdcvt" arg; do
   case $arg in
     m)
       parameter_counter=$((parameter_counter + 1));;
-    d)
-      parameter_counter=$((parameter_counter + 2));;
     c)
       parameter_counter=$((parameter_counter + 3));;
-    v)
-      parameter_counter=$((parameter_counter + 4));;
     t)
       parameter_counter=$((parameter_counter + 5));;
   esac
@@ -249,12 +246,8 @@ if [ $parameter_counter -eq 0 ]; then
   helpPanel
 elif [ $parameter_counter -eq 1 ]; then
   changeToMain
-elif [ $parameter_counter -eq 2 ]; then
-  changeToDark
 elif [ $parameter_counter -eq 3 ]; then
   changeToCatppuccin
-elif [ $parameter_counter -eq 4 ]; then
-  changeToDracula
 elif [ $parameter_counter -eq 5 ]; then
   changeToTokyo
 else

@@ -8,7 +8,11 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun -theme ~/.config/rofi/themes/main.rasi
+	rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi
+
+# powermenu launcher
+super + tab
+	rofi -show drun -theme ~/.config/rofi/themes/powermenu.rasi
 
 #################
 # bspwm hotkeys #
