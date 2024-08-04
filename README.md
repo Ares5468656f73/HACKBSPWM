@@ -10,13 +10,11 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ---
 
-[GeneralPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Floating_preview.mp4)
+![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview1.png)
 
-![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/MainTheme.png)
+![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview2.png)
 
-![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/CatppuccinTheme.png)
-
-![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/DarkTheme.png)
+![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview3.png)
 
 ## **Installation**
 ---
@@ -37,9 +35,6 @@ Run the **setup.sh** script to install and configure all the necessary tools.
 chmod +x setup.sh
 ./installer.sh
 ```
-##### *You will see this*
-![FirstPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/SetupPreview-1.png)
-![SecondPart](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/SetupPreview-2.png)
 
 After the script has finished, log out and log back in to apply all changes.
 
@@ -48,9 +43,8 @@ After the script has finished, log out and log back in to apply all changes.
 >[!TIP]
 >Change the color theme
 
-To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Scripts/changeTheme.sh) script. You will see this:
+To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Scripts/changeTheme.sh) script.
 
-![ChangeThemePreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/ChangeThemePreview.png)
 
 There are ***4*** available themes, thanks to 
 
@@ -58,7 +52,6 @@ There are ***4*** available themes, thanks to
 |--------|-------------|
 | [S4vitar](https://www.youtube.com/@s4vitar) | For main theme color and also for introduce me in cybersecurity world. Thanks S4vi por que se tensó |
 | [Catppuccin](https://catppuccin.com/) | Obviously for the catppuccin theme |
-| [Dark](https://archcraft.io/) | I took the colors of this distro which i used to use |
 | [Tokyo](https://github.com/ares5468656f73) | Colors by me ;) |
 
 
@@ -68,8 +61,6 @@ There are ***4*** available themes, thanks to
 
 The original `rofi` theme was from [adi1090x](https://github.com/adi1090x/rofi/tree/master)
 
-Image and colors were from *me* (It`s fucking awesome)
-
 # ZSHRC
 ---
 New `.zshrc` for [user](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_user) and [root](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_root)
@@ -78,15 +69,14 @@ With new ***prompt***
 
 ![PromptMainPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptMainPreview.png)
 ![PromptCatppuccinPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptCatppuccinPreview.png)
-![PromptDarkPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptDarkPreview.png)
 ![PromptTokyoPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptTokyoPreview.png)
 
 ##### **And also new functions**
-![pkgInstall](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/pkgInstall_Preview.png)
+![pkgInstall](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/pkgInstallPreview.png)
 ---
-![systemUpgrade](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/systemUpgrade_Preview.png)
+![systemUpgrade](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/systemUpgradePreview.png)
 ---
-![startServer](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/startServer_Preview.png)
+![startServer](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/startServerPreview.png)
 
 >[!IMPORTANT]
 >## **Tool Details**
@@ -111,7 +101,7 @@ With new ***prompt***
 >
 >lsd is a modern alternative to ls with a beautiful colorized output.
 
-Fonts were from [HackNerdFonts](https://www.nerdfonts.com/) and [Monocraf](https://github.com/IdreesInc/Monocraft) 
+Fonts were from [HackNerdFonts](https://www.nerdfonts.com/) and [Monocraft](https://github.com/IdreesInc/Monocraft) 
 
 ## **License**
 
@@ -119,9 +109,7 @@ Fonts were from [HackNerdFonts](https://www.nerdfonts.com/) and [Monocraf](http
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-[https://github.com/Ares5468656f73/HACKBSPWM.git](https://github.com/Ares5468656f73/HACKBSPWM.git)
-
-[Ares](https://github.com/Ares5468656f73/)
+[github.com/Ares5468656f73](https://github.com/Ares5468656f73/HACKBSPWM.git)
 
 >[!WARNING]
 >This `README.md` file provides comprehensive information about the pentesting >environment, how to install it using the `setup.sh` script, a brief description >of each tool included, and the contents of the scrips.
