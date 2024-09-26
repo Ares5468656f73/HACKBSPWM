@@ -10,6 +10,10 @@ super + Return
 super + d
 	rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi
 
+# powermenu launcher
+super + d
+	/usr/bin/rofi -show drun -theme ~/.config/rofi/themes/powermenu.rasi
+
 #################
 # bspwm hotkeys #
 #################
@@ -62,6 +66,7 @@ super + ctrl + space
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Custom move/resize
-super + alt + {Left,Down,Up,Right}
-	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+# Redimensionar la ventana actual con teclas de flecha
+super + alt + {Left,Right,Down,Up}
+    bspc node -z {left -60 0, right 60 0, bottom 0 60, top 0 -60}
+
