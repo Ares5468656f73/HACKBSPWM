@@ -2,8 +2,8 @@
 
 # Display help panel
 show_help() {
-  echo -e "\t-i) Install the environment"
-  echo -e "\t-r) Remove the environment\n"
+  echo "-i) Install the environment"
+  echo "-r) Remove the environment"
 }
 
 # Check if HACKBSPWM directory exists
@@ -44,48 +44,6 @@ install_fonts() {
   sudo cp -r "$dotfiles_path/fonts" /usr/share/fonts
 }
 
-# Setup Zsh for the current user
-setup_zsh() {
-  local zsh_custom="$HOME/.oh-my-zsh/custom"
-  local plugins_dir="$zsh_custom/plugins"
-
-  if [ -f ~/.zshrc ]; then
-    rm ~/.zshrc
-  fi
-
-  if [ ! -d ~/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
-
-  cp "$dotfiles_path/.zshrc_user" ~/.zshrc
-
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$plugins_dir/zsh-autosuggestions"
-  chmod +x "$plugins_dir"/*
-}
-
-# Setup Zsh for root
-setup_root_zsh() {
-  sudo bash -c '
-    local zsh_custom="/root/.oh-my-zsh/custom"
-    local plugins_dir="$zsh_custom/plugins"
-
-    if [ -f /root/.zshrc ]; then
-      rm /root/.zshrc
-    fi
-
-    if [ ! -d /root/.oh-my-zsh ]; then
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
-
-    cp "'$dotfiles_path'/.zshrc_root" /root/.zshrc
-
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$plugins_dir/zsh-syntax-highlighting"
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$plugins_dir/zsh-autosuggestions"
-    chmod +x "$plugins_dir"/*
-  '
-}
-
 # Install the environment
 install_environment() {
   local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
@@ -124,8 +82,6 @@ install_environment() {
 
   copy_config_files
   install_fonts
-  setup_zsh
-  setup_root_zsh
 }
 
 # Remove the environment
