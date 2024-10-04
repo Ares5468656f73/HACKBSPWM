@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-# Nombre de la barra que deseas controlar
+# Name of the bar, this will help for future bars
 BAR_NAME="shutdown_buttons"
 
-# Verificar si la barra está en ejecución
+# Check if bar is executing
 if pgrep -x "polybar" -a | grep -q "$BAR_NAME"; then
-    # Si está en ejecución, cerrarla con pkill
+    # if it is executing, kill it
     pkill -f "polybar $BAR_NAME"
-    # Restaurar el padding del monitor a su valor original (ej. 0px en todos lados)
+    # restore the padding after resize
     bspc config top_padding 40
 else
-    # Aumentar el padding superior para hacer espacio para la barra (ej. 30px)
+    # increase the padding to open the bar
     bspc config top_padding 0
-    # Lanzar la barra
+    # launch the bar
     polybar $BAR_NAME &
 fi
 

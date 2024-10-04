@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-getColor ()
-{
-  grep "$1" ~/.config/polybar/colors.ini | cut -d'=' -f2| tr -d ' '  
-}
-
-primary=$(getColor "active")
-alert=$(getColor "alert")
-
 # Check if VPN is running
 if pgrep -x "openvpn" > /dev/null; then
     # VPN active
-    echo "%{F$primary} %{F-}"
+    echo "%{F#7aa2f7} %{F-}"
 else
     # VPN inactive
-    echo "%{F$alert} %{F-}"
+    echo "%{F#f7768e} %{F-}"
 fi 

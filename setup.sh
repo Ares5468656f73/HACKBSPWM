@@ -13,6 +13,7 @@ if [ -z "$dotfiles_path" ]; then
   exit 1
 fi
 
+# Check user
 user=$(whoami)
 if [ "$user" == "root" ]; then
   echo "Operation cannot be performed as root."

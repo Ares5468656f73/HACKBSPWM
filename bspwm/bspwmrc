@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # ##############################################################################
 # #                                 WINDOW RULES                               #
@@ -30,7 +30,7 @@ bspc rule -a Screenkey manage=off
 
 # Function to start sxhkd without errors
 start_sxhkd() {
-  if ! pgrep -x sxhkd > /dev/null; then
+  if [ ! pgrep -x sxhkd > /dev/null ]; then
     sxhkd &
     return 0
   else
