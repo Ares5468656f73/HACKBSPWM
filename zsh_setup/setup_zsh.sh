@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Intenta encontrar el archivo .p10k.zsh en el sistema
+# located the .p10k.zsh file in the system
 p10k_config_file_path=$(find / -name .p10k.zsh 2>/dev/null | head -n 1)
 
-# Verifica que se encontró el archivo de configuración
+# check if it find the file
 if [[ -z "$p10k_config_file_path" ]]; then
   echo "No se encontró el archivo .p10k.zsh. Asegúrate de que la ruta sea correcta."
   exit 1
@@ -26,7 +26,7 @@ setup_oh_my_zsh ()
 
 install_powerlevel10k () 
 {
-  # Instalación para el usuario normal
+  # Normal user instalation
   if [ ! -d ~/powerlevel10k ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
@@ -34,7 +34,7 @@ install_powerlevel10k ()
     echo "La carpeta ~/powerlevel10k ya existe. Omitiendo la clonación."
   fi
 
-  # Instalación para root
+  # Root instalation
   if [ "$(id -u)" -eq 0 ]; then
     if [ ! -d /root/powerlevel10k ]; then
       git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k
@@ -44,7 +44,7 @@ install_powerlevel10k ()
     fi
   fi
 
-  # Copiar la configuración de Powerlevel10k
+  # Copy p10k config file
   if [ -e "$HOME/.p10k.zsh" ]; then
     read -p "~/.p10k.zsh ya existe. ¿Deseas sobrescribirlo? (s/n): " choice
     case "$choice" in
