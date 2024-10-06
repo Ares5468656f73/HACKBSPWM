@@ -1,7 +1,5 @@
 # ***Pentesting Environment on Linux***
 
-![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3RyMWM5MDR5dGl5NG4ydDVndWI2MGZtbmY5Zmwzbm9zbnV0aHlmbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/B4dt6rXq6nABilHTYM/giphy.webp)
-
 This pentesting environment is specifically configured for Linux and utilizes the following tools and configurations:
 
 ***Window Manager ≡ [bspwm](https://github.com/baskerville/bspwm)*** 
@@ -10,11 +8,8 @@ This pentesting environment is specifically configured for Linux and utilizes th
 
 ---
 
-![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview1.png)
+![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Main.png)
 
-![Preview-2](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview2.png)
-
-![Preview-4](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Preview3.png)
 
 ## **Installation**
 ---
@@ -38,21 +33,30 @@ chmod +x setup.sh
 
 After the script has finished, log out and log back in to apply all changes.
 
-## Change theme
+## Modules in polybar
+The polybar have 5 icons in polybar
+![Preview-1](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Polybar_preview.png)
+#### Battery module [`battery_status.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/battery_status.sh)
+The battery module print the actual percentage of the battery and if it is charging
+#### VPN module [`vpn_status.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/vpn_status.sh)
+Is the lock which is red, check is VPN its running 
+#### Open ports module [`open_ports.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/open_ports.sh)
+It checks if the machine has open ports
+#### AI integration module [`chatgpt.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/chatgpt.sh)
+If you click it you will see this:
+![Video AI](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/AI.mp4)
+###### This is the input you give, to configure it you need to:
+![AI script preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/AI_preview.png)
+You need to change the api key
+#### Shudown buttons [`launch_shutdown_buttons.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/launch_shutdown_buttons.sh)
+![Shutdown video](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Buttons_preview.mp4)
+
+## Change shell 
 ---
 >[!TIP]
->Change the color theme
+>Change the shell
 
-To change the theme for your polybar and your kitty and also the background you only need to execute de [`changeTheme.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Scripts/changeTheme.sh) script.
-
-
-There are ***4*** available themes, thanks to 
-
-| Name | Description |
-|--------|-------------|
-| [S4vitar](https://www.youtube.com/@s4vitar) | For main theme color and also for introduce me in cybersecurity world. Thanks S4vi por que se tensó |
-| [Catppuccin](https://catppuccin.com/) | Obviously for the catppuccin theme |
-| [Tokyo](https://github.com/ares5468656f73) | Colors by me ;) |
+Now the shell if configure apart of the [`setup.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/setup.sh) with [`setup_zsh.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/zsh_setup/setup_zsh.sh) script.
 
 
 ## Rofi
@@ -60,23 +64,6 @@ There are ***4*** available themes, thanks to
 ![Rofi theme](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/RofiPreview.png)
 
 The original `rofi` theme was from [adi1090x](https://github.com/adi1090x/rofi/tree/master)
-
-# ZSHRC
----
-New `.zshrc` for [user](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_user) and [root](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/.zshrc_root)
-
-With new ***prompt*** 
-
-![PromptMainPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptMainPreview.png)
-![PromptCatppuccinPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptCatppuccinPreview.png)
-![PromptTokyoPreview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/PromptTokyoPreview.png)
-
-##### **And also new functions**
-![pkgInstall](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/pkgInstallPreview.png)
----
-![systemUpgrade](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/systemUpgradePreview.png)
----
-![startServer](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/startServerPreview.png)
 
 >[!IMPORTANT]
 >## **Tool Details**
