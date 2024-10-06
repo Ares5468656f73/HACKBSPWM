@@ -28,16 +28,6 @@ bspc rule -a Screenkey manage=off
 # #                                 FUNCTIONS                                  #
 # ##############################################################################
 
-# Function to start sxhkd without errors
-start_sxhkd() {
-  if [ ! pgrep -x sxhkd > /dev/null ]; then
-    sxhkd &
-    return 0
-  else
-    return 1 
-  fi
-}
-
 # Function to configure monitors and desktops
 configure_monitors() {
   monitors=($(xrandr --listmonitors | awk 'NR>1 {print $4}'))
@@ -74,7 +64,7 @@ launch_polybar() {
   fi
 }
 
-# Function to set the wallpaper
+# Function to set the wallpaper (in the first boot you need to change it manually)
 set_wallpaper() {
   if [ -x ~/.fehbg ]; then
     ~/.fehbg &
@@ -82,6 +72,11 @@ set_wallpaper() {
   else
     return 1
   fi
+}
+
+# Function to start sxhkd without errors
+start_sxhkd() {
+  sxhkd &
 }
 
 # ##############################################################################
