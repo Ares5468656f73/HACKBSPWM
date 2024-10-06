@@ -6,7 +6,7 @@ OPEN_PORTS=$(nmap -p- --open -min-rate 5000 -n -Pn localhost | grep 'open' | awk
 # See if there is open ports
 if [ -z "$OPEN_PORTS" ]; then
     # Show secure icon with a color
-    echo -e "%{F#7aa2f7} %{F-}"
+    echo -e "%{F#73daca} %{F-}"
 else
     # Format the ports to show correctly in the polybar
     FORMATTED_PORTS=$(echo $OPEN_PORTS | tr '\n' ' ')

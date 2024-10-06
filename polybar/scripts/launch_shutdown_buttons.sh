@@ -13,6 +13,6 @@ else
     # increase the padding to open the bar
     bspc config top_padding 0
     # launch the bar
-    polybar $BAR_NAME &
+    polybar $BAR_NAME --config=~/.config/polybar/config_shutdown_buttons_bar.ini &
 fi
 
