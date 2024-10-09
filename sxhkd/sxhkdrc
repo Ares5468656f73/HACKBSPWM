@@ -6,13 +6,9 @@
 super + Return
 	/usr/bin/kitty
 
-# program launcher
-super + d
-	rofi -show drun -theme ~/.config/rofi/themes/launcher.rasi
-
 # powermenu launcher
 super + d
-	/usr/bin/rofi -show drun -theme ~/.config/rofi/themes/powermenu.rasi
+	/usr/bin/rofi -show drun -theme ~/.config/rofi/style-6.rasi
 
 #################
 # bspwm hotkeys #
