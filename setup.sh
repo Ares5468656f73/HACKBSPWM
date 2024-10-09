@@ -35,7 +35,7 @@ copy_config_files() {
   done
 
   cp -r "$src_dir/Wallpapers" ~
-  chmod +x ~/.config/{bspwm,bspwm/scripts,sxhkd,polybar,polybar/scripts,kitty,rofi/themes}/*
+  chmod +x ~/.config/{bspwm,sxhkd,polybar,polybar/scripts,kitty,rofi}/*
   cp -r "$src_dir/Scripts" ~
   chmod +x ~/Scripts/*
 }
