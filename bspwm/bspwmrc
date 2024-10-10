@@ -54,46 +54,30 @@ configure_monitors() {
   fi
 }
 
-# Function to launch polybar withour errors
-launch_polybar() {
-  if [ -x ~/.config/polybar/launch.sh ]; then
-    ~/.config/polybar/launch.sh &>/dev/null &
-    return 0
-  else
-    return 1
-  fi
-}
-
-# Function to set the wallpaper (in the first boot you need to change it manually)
-set_wallpaper() {
-  if [ -x ~/.fehbg ]; then
-    ~/.fehbg &
-    return 0
-  else
-    return 1
-  fi
-}
-
-# Function to start sxhkd without errors
-start_sxhkd() {
-  sxhkd &
-}
-
 # ##############################################################################
 # #                      INITIALIZE PROGRAMS AND SCRIPTS                       #
 # ##############################################################################
 
 # Initialize sxhkd
-start_sxhkd
+sxhkd &
 
 # Configure monitors and desktops
 configure_monitors
 
-# Launch polybar
-launch_polybar
+# Launch polybar 
+if [ -x ~/.config/polybar/launch.sh ]; then
+  ~/.config/polybar/launch.sh &>/dev/null &
+fi
 
 # Set default cursor
 xsetroot -cursor_name left_ptr &
 
 # Set the last wallpaper
-set_wallpaper
+if [ -x ~/.fehbg ]; then
+  ~/.fehbg &
+fi
+
+# Launch pulseadio
+if [ -z "$PULSE_SERVER" ]; then
+    pulseaudio --start
+fi

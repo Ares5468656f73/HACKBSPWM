@@ -47,7 +47,7 @@ install_fonts() {
 
 # Install the environment
 install_environment() {
-  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh"
+  local packages="bspwm sxhkd kitty polybar rofi feh nmap zsh pulseaudio pulseaudio-alsa pulseaudio-bluetooth upower"
   local extra_packages="lsd bat"
   local os=$1
   local update_cmd install_cmd
