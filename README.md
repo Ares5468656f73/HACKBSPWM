@@ -58,17 +58,13 @@ Checks for any open ports on the machine.
 
 ### 🤖 AI Integration Module [`chatgpt.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/chatgpt.sh)
 
-Clicking this module allows you to interact with ChatGPT. Here's a quick preview:
-
-![AI Module](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/AI.mp4)
+Clicking this module allows you to interact with ChatGPT.
 
 🔧 **Setup**: Don't forget to update your API key!
 
 ### 🔘 Shutdown Buttons [`launch_shutdown_buttons.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/launch_shutdown_buttons.sh)
 
-Manage shutdown options with this handy script:
-
-![Shutdown Buttons Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Buttons_preview.mp4)
+Manage shutdown options with this handy script.
 
 ## 🐚 **Change the Shell**
 
