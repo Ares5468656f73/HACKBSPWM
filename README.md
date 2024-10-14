@@ -9,11 +9,13 @@ A tiling window manager that organizes windows in a binary tree format, offering
 ## 🌟 **Preview**
 
 ---
-![Main Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Main_preview.gif)
+
+![Main Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Main_preview.gif?raw=true)
 
 ## ⚙️ **Installation**
 
 ---
+
 To automatically configure the pentesting environment, use the [`setup.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/setup.sh) script included in this repository.
 
 ### **Step 1: Clone the Repository**
@@ -37,12 +39,17 @@ chmod +x setup.sh
 💡 **Tip**: After the script finishes, log out and back in to apply all changes.
 
 ## 🛠️ **Polybar Modules**
----
-![Rofi Theme Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/New_modules_preview.gif)
----
-The polybar includes 5 modules:
 
-![Polybar Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Polybar_preview.png)
+---
+
+![Rofi Theme Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/New_modules_preview.gif?raw=true)
+---
+
+![Polybar Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Polybar_preview.png?raw=true)
+
+> [!NOTE]
+> 
+> There are 5 new modules
 
 ### 🔋 Battery Module [`battery_status.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/polybar/scripts/battery_status.sh)
 
@@ -69,18 +76,21 @@ Manage shutdown options with this handy script.
 ## 🐚 **Change the Shell**
 
 ---
+
 > ℹ️ **Note**: You can change the shell as part of the [`setup.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/setup.sh) process using the [`setup_zsh.sh`](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/zsh_setup/setup_zsh.sh) script.
 
 ## 🎨 **Rofi Theme**
 
 ---
-![Rofi Theme Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Rofi_theme_preview.png)
+
+![Rofi Theme Preview](https://github.com/Ares5468656f73/HACKBSPWM/blob/main/Preview/Rofi_theme_preview.png?raw=true)
 
 Original theme by [adi1090x](https://github.com/adi1090x/rofi/tree/master).
 
 ## 🔧 **Tool Details**
 
 ---
+
 Here are some of the tools and technologies used in this environment:
 
 - [**bspwm**](https://github.com/baskerville/bspwm): Tiling window manager.
@@ -94,6 +104,11 @@ Here are some of the tools and technologies used in this environment:
 ## 📄 **License**
 
 ---
+
+> [!CAUTION]
+> 
+> There are 5 new modules
+
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 For more information, visit [github.com/Ares5468656f73](https://github.com/Ares5468656f73/HACKBSPWM.git).
